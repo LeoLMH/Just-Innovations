@@ -7,17 +7,25 @@
 The link to all 3rd-party tools, libraries, SDKs, APIs that may be used in our project are listed below:
 
 + **Speech to Text API**: [Google Cloud Speech-to-Text](https://cloud.google.com/speech-to-text)
++ **Audio Analysis**: [Librosa](https://librosa.org/doc/latest/index.html)
++ **Tone Analysis**: [torchaudio](https://pytorch.org/audio/stable/index.html) 
 + ...
 
 ## Model and Engine
+
+[story map]
+
+[explanation]
 
 ## APIs and Controller
 
 **Request Parameters**
 
-| Key        | Location       | Type   | Description  |
-| ---------- | -------------- | ------ | ------------ |
-| `username` | Session Cookie | String | Current User |
+| Key           | Location       | Type   | Description                              |
+| ------------- | -------------- | ------ | ---------------------------------------- |
+| `username`    | Session Cookie | String | Current user                             |
+| `script_path` |                | String | Location of script file uploaded by user |
+| `audio_path`  |                | String | Location of audio file recorded by user  |
 
 **Response Codes**
 
