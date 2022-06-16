@@ -6,7 +6,8 @@
 
 The link to all 3rd-party tools, libraries, SDKs, APIs that may be used in our project are listed below:
 
-+ 
++ **[Speech to Text API](#speech2text-api)**: [Google Cloud Speech-to-Text](https://cloud.google.com/speech-to-text)
++ ...
 
 ## Model and Engine
 
@@ -46,8 +47,28 @@ The link to all 3rd-party tools, libraries, SDKs, APIs that may be used in our p
 
 
 
-### Third-Party SDKs
+### Third-Party APIs & SDKs
+
+<h4 id="speech2text-api">Google Cloud Speech-to-Text</h4>
+
+
+
+
 
 ## View UI/UX
 
+This section is left blank for now.
+
 ## Team Roster
+
+The contribution division will be added later.
+
+| Name         | Contribution |
+| ------------ | ------------ |
+| Chenshu Zhu  |              |
+| Minhao Li    |              |
+| Junqi Chen   |              |
+| Yuqing Wang  |              |
+| Yangqin Yan  |              |
+| Jiaming Kang |              |
+
