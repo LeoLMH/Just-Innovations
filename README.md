@@ -23,7 +23,19 @@ The link to all 3rd-party tools, libraries, SDKs, APIs that may be used in our p
 + **System Architecture**:
 ![alt text](https://github.com/LeoLMH/441-team-project/blob/main/architecture.png?raw=true)
 
+**Front End**:
+Firsly user will send his/her scripts, rehearsal recording and topic through our front end.
 
+**Back End - Main Handler**:
+The main handler maintains connection and listens to front end's message. It fetches all the inputs other engines require and send to them.
+
+**Back End - Vision Handler**:
+The vision handler extracs frames from the video and sends them to engines. MTCNN performs facial expression classification. It firstly detects the bounding box for face and outputs a 7-dimensional vector which represenst the probability of neutral, happiness, surprise, sadness, anger, disgust and fear. 
+
+On the other hand, the mediapipe library provides a 3-stage pretrained neural network which is used to detect bounding box for gestures, analyze gestures and perform landmark regression. By tracking the landmark displacements, it outputs a score to reflect gesture usages.
+
+**Back End - Voice Handler**:
+The voice handler relies on Speech-To-Text results from Google Cloud. It
 
 
 ## APIs and Controller
