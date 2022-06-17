@@ -1,7 +1,5 @@
 # 441-team-project
 
-(I simply copy and paste the template here, you can modified it.)
-
 ## Getting Started
 
 The link to all 3rd-party tools, libraries, SDKs, APIs that may be used in our project are listed below:
@@ -24,7 +22,7 @@ The link to all 3rd-party tools, libraries, SDKs, APIs that may be used in our p
 ![alt text](https://github.com/LeoLMH/441-team-project/blob/main/architecture.png?raw=true)
 
 **Front End**:
-Firsly user will send his/her scripts, rehearsal recording and topic through our front end.
+Firsly user will send a request which contains a script, rehearsal recording and topic through our front end.
 
 **Back End - Main Handler**:
 The main handler maintains connection and listens to front end's message. It fetches all the inputs other engines require and send to them.
@@ -38,7 +36,7 @@ On the other hand, the mediapipe library provides a 3-stage pretrained neural ne
 The voice handler relies on Speech-To-Text results from Google Cloud. It sends a request along with a piece of audio recording to Google Cloud and gets transcripts. Stop word counts are directly obtained from those transcripts and sent to the feedback handler. Furthermore, the ground true script provided by users can be used to compare with the rehearsals. The 
 percentage of correctly recited words is sent to feedback handler.
 
-The voice handler uses librosa library to get the start and stop time of each word. In this way, the engine calculates a fluent score for every 5 consecutive words. Given that time period, the maximum and minimum waveform magnitudes are checked for each word. The average volume of two consecutive words is passed to feedback handler.
+The voice handler uses librosa library to verity the start and stop time of each word produced by Google API. In this way, the engine calculates a fluent score for every 5 consecutive words. Given that time period, the maximum and minimum waveform magnitudes are checked for each word. The average volume of two consecutive words is passed to feedback handler.
 
 Last but not least, the voice handler uses torchaudio model to learn to analyze positive and negative emotions from audio. The model can also compare sentiment of the audio with topics selected by users. The analysis results are sent to feedback handler.
 
@@ -53,6 +51,8 @@ The feedback handler receives various outputs from voice handler and vision hand
 | Key           |  Type   | Description                              |
 | ------------- |  ------ | ---------------------------------------- |
 | `username`    |  String | Current user                             |
+| `topic`    |  String | Presentation Topic                           |
+| `script`    |  String | Presentation script                         |
 | `recording_path` |  String | Location of Rehearsal Recording Uploaded by User |
 | `recording`  | Media File | Rehearsal Recording  |
 
@@ -64,16 +64,6 @@ The feedback handler receives various outputs from voice handler and vision hand
 | `encoding` |  String | Type of Audio Encoding |
 | `languageCode`  | String | Audio Language  |
 | `sampleRateHertz`  | String | Sampling rate of audio  |
-
-{
-"config": {
-  "languageCode": "en-US",
-  "enableWordTimeOffsets": true
-  },
-"audio":{
-  "uri":"gs://gcs-test-data/gettysburg.flac"
-  }
-}
 
 **Google Cloud Speech-to-text Responde Parameters**
 
