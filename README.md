@@ -94,12 +94,6 @@ The feedback handler receives various outputs from voice handler and vision hand
 | `recite_score` |  Float | 0-10 Score which evaluates users' articulation and recitation of scripts |
 | `feedback`  | String | Summary of various scores and includes a short instruction on how to improve the overall presentations.  |
 
-**Example**
-
-
-
-### Third-Party SDKs
-
 ## View UI/UX
 
 This section is left blank for now.
