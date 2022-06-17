@@ -65,6 +65,16 @@ The feedback handler receives various outputs from voice handler and vision hand
 | `languageCode`  | String | Audio Language  |
 | `sampleRateHertz`  | String | Sampling rate of audio  |
 
+{
+"config": {
+  "languageCode": "en-US",
+  "enableWordTimeOffsets": true
+  },
+"audio":{
+  "uri":"gs://gcs-test-data/gettysburg.flac"
+  }
+}
+
 **Google Cloud Speech-to-text Responde Parameters**
 
 | Key           |  Type   | Description                              |
@@ -83,23 +93,6 @@ The feedback handler receives various outputs from voice handler and vision hand
 | `volume_score` |  Float | 0-10 Score which evaluates users' speaking volume |
 | `recite_score` |  Float | 0-10 Score which evaluates users' articulation and recitation of scripts |
 | `feedback`  | String | Summary of various scores and includes a short instruction on how to improve the overall presentations.  |
-
-**Returns**
-
-*If no user is logged in or no posts created by user*
-
-| Key             | Location | Type                      | Description                                  |
-| --------------- | -------- | ------------------------- | -------------------------------------------- |
-| `popular_songs` | JSON     | List of Spotify Track IDs | Top 25 songs on Spotify in the United States |
-
-*For logged-in users with 1 or more posts created*
-
-| Key                         | Location | Type                      | Description                                                  |
-| --------------------------- | -------- | ------------------------- | ------------------------------------------------------------ |
-| `attribute_recommendations` | JSON     | List of Spotify Track IDs | Attribute-based recommendations (random genres)              |
-| `genre_recommendations`     | JSON     | List of Spotify Track IDs | Attribute and genre-based recommendations based on user's favorite genres |
-| `artist_recommendations`    | JSON     | List of Spotify Track ID  | Attribute and artist-based recommendations based on user's favorite artists |
-| `attribute_error`           | JSON     | Dictionary                | contains the average error % for each attribute between recommendation and the user's attribute vector. |
 
 **Example**
 
