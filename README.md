@@ -8,7 +8,11 @@ The link to all 3rd-party tools, libraries, SDKs, APIs that may be used in our p
 
 + **Speech to Text API**: [Google Cloud Speech-to-Text](https://cloud.google.com/speech-to-text)
 + **Audio Analysis**: [Librosa](https://librosa.org/doc/latest/index.html)
-+ **Tone Analysis**: [torchaudio](https://pytorch.org/audio/stable/index.html) 
++ **Tone Analysis**: [torchaudio](https://pytorch.org/audio/stable/index.html)
++ **Pretrained Multi-task Cascaded Convolutional Networks**: [fer-pytorch](https://pypi.org/project/fer-pytorch/)
++ **Hand Motion Track**: [mediapipe](https://google.github.io/mediapipe/)
++ **Neural Network Framework**: [Pytorch](https://pytorch.org/)
++ **Computer Vision Toolkit**: [OpenCV](https://pypi.org/project/opencv-python/)
 + ...
 
 ## Model and Engine
