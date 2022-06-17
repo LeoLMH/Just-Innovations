@@ -17,9 +17,14 @@ The link to all 3rd-party tools, libraries, SDKs, APIs that may be used in our p
 
 ## Model and Engine
 
-[story map]
++ **Story Map**:
+![alt text](https://github.com/LeoLMH/441-team-project/blob/main/storymap.png?raw=true)
 
-[explanation]
++ **System Architecture**:
+![alt text](https://github.com/LeoLMH/441-team-project/blob/main/architecture.png?raw=true)
+
+
+
 
 ## APIs and Controller
 
