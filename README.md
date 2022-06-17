@@ -48,20 +48,41 @@ The feedback handler receives various outputs from voice handler and vision hand
 
 ## APIs and Controller
 
-**Request Parameters**
+**Front-End Request Parameters**
 
-| Key           | Location       | Type   | Description                              |
-| ------------- | -------------- | ------ | ---------------------------------------- |
-| `username`    | Session Cookie | String | Current user                             |
-| `script_path` |                | String | Location of script file uploaded by user |
-| `audio_path`  |                | String | Location of audio file recorded by user  |
+| Key           |  Type   | Description                              |
+| ------------- |  ------ | ---------------------------------------- |
+| `username`    |  String | Current user                             |
+| `recording_path` |  String | Location of Rehearsal Recording Uploaded by User |
+| `recording`  | Media File | Rehearsal Recording  |
 
-**Response Codes**
+**Google Cloud Speech-to-text Request Parameters**
 
-| Code              | Description        |
-| ----------------- | ------------------ |
-| `200 OK`          | Success            |
-| `400 Bad Request` | Invalid parameters |
+| Key           |  Type   | Description                              |
+| ------------- |  ------ | ---------------------------------------- |
+| `uri`    |  String | Path to Audio File                            |
+| `encoding` |  String | Type of Audio Encoding |
+| `languageCode`  | String | Audio Language  |
+| `sampleRateHertz`  | String | Sampling rate of audio  |
+
+**Google Cloud Speech-to-text Responde Parameters**
+
+| Key           |  Type   | Description                              |
+| ------------- |  ------ | ---------------------------------------- |
+| `transcript`    |  String | Transcripts of Audio File                           |
+| `confidence` |  Float | Confidence value (0-1)|
+| `word`  | dict | Start Time and Stop Time of Each Word in Transcript  |
+
+**Back-End Responde Parameters**
+| Key           |  Type   | Description                              |
+| ------------- |  ------ | ---------------------------------------- |
+| `gesture_score`    |  float | 0-10 Score which evaluates users' gesture usages                         |
+| `facial_score`    |  float | 0-10 Score which evaluates users' facial expressions                        |
+| `tone_score`    |  float | 0-10 Score which evaluates users' tone                       |
+| `stopword_count`    |  int | Total Stop Words Counts of Recording                         |
+| `volume_score` |  Float | 0-10 Score which evaluates users' speaking volume |
+| `recite_score` |  Float | 0-10 Score which evaluates users' articulation and recitation of scripts |
+| `feedback`  | String | Summary of various scores and includes a short instruction on how to improve the overall presentations.  |
 
 **Returns**
 
