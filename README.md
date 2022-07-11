@@ -101,3 +101,9 @@ The contribution division will be added later.
 | Yangqin Yan  |              |
 | Jiaming Kang |              |
 
+## Dependencies
+
+### Audio API
++ `numpy`
++ `librosa`
++ `pickle`
