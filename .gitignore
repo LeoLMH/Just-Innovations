@@ -1,3 +1,6 @@
 .idea
 .vscode
+*.mp4
+*.mp3
+flask/env
 __pycache__
