@@ -13,11 +13,13 @@ def load_audio_file(filepath, reset=False):
         "energy": rms
     }  
     """
+
     basename = os.path.basename(filepath)
     filename, ext = os.path.splitext(basename)
     if not os.path.exists(".cache"):
         os.mkdir(".cache")
     datapath = os.path.join(".cache", filename + ".npz")
+
     # only process the audio file if it has not been processed before
     if not os.path.exists(datapath) or reset:
         y, sr = librosa.load(filepath)

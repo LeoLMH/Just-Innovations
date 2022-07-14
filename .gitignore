@@ -4,3 +4,6 @@
 *.mp3
 flask/env
 __pycache__
+flask/api/download
+flask/api/.cache
+mytest.py

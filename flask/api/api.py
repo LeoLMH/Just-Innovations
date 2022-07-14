@@ -1,8 +1,11 @@
+import json
+
 from audio import load_audio_file,get_volume,get_wordspersecond
 import flask
 import time
 from flask import Flask, flash, request, redirect, url_for, jsonify
-
+import ffmpy
+import os
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
@@ -15,17 +18,30 @@ def test():
 @app.route('/audio', methods=['POST'])
 def audio_handler():
     print("audio handler")
-    
-    filename = './download/'+str(time.time())+".mp4"
-    rec = request.files.get('recording')
+
+    rec = request.files['recording']
+    fmt = rec.filename.split(".")[-1]
+
+    filename = './download/' + str(int(time.time())) + "." + fmt
     rec.save(filename)
+
+    source_file = filename
+    sink_file = './download/' + str(int(time.time())) + ".wav"
+    print(sink_file)
+    ff = ffmpy.FFmpeg(
+        inputs={source_file: None},
+        outputs={sink_file: None})
+    ff.run()
+
     print(request.form['script'])
-    data = load_audio_file(filename, reset = False)
+    data = load_audio_file(sink_file, reset = False)
     average_volume = get_volume(data)
+    print(average_volume)
     words_per_sec = get_wordspersecond(data)
+    print(words_per_sec)
     return jsonify(
-        volume = average_volume,
-        word = words_per_sec
+        volume = float(average_volume),
+        word = float(words_per_sec)
     )
 
 app.run()
