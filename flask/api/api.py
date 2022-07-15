@@ -44,4 +44,5 @@ def audio_handler():
         word = float(words_per_sec)
     )
 
+
 app.run()
