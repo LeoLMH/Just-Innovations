@@ -97,7 +97,7 @@ The contribution division will be added later.
 | Chenshu Zhu  |              |
 | Minhao Li    | Build backend connection; Visual Assessment Algorithm             |
 | Junqi Chen   |              |
-| Yuqing Wang  |              |
+| Yuqing Wang  |Collaborate with Minhao Li to work on backend. Allow backend to receive and process audio evaluation request.|
 | Yangqin Yan  |              |
 | Jiaming Kang |              |
 
