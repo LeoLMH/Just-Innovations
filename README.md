@@ -94,11 +94,11 @@ The contribution division will be added later.
 
 | Name         | Contribution |
 | ------------ | ------------ |
-| Chenshu Zhu  |              |
-| Minhao Li    | Build backend connection; Visual Assessment Algorithm             |
+| Chenshu Zhu  | Build presentation audio rating api. Build content-topic correlation rating api. Manage git repo. |
+| Minhao Li    | Build backend connection; Visual Assessment Algorithm. |
 | Junqi Chen   |              |
-| Yuqing Wang  |Collaborate with Minhao Li to work on backend. Allow backend to receive and process audio evaluation request.|
-| Yangqin Yan  | Design frontend layout and implement frontend activities.           |
+| Yuqing Wang  | Collaborate with Minhao Li to work on backend. Allow backend to receive and process audio evaluation request. |
+| Yangqin Yan  | Design frontend layout and implement frontend activities. |
 | Jiaming Kang |              |
 
 ## Dependencies
@@ -107,3 +107,6 @@ The contribution division will be added later.
 + `numpy`
 + `librosa`
 + `pickle`
+
+### Content API
++ `nltk`
