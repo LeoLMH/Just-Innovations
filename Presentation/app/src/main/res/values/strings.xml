@@ -1,0 +1,34 @@
+<resources>
+    <string name="team_name">Just Innovation</string>
+    <string name="app_name">Presentation</string>
+    <string name="start">Getting Started</string>
+    <string name="recent">Recent Feedback</string>
+    <string name="username">YOUR_JACCOUNT</string>
+    <string name="message">Some short sample text.</string>
+    <string name="coverImage">coverImage</string>
+    <string name="newPresentation">New Presentation</string>
+    <string name="video">Video</string>
+    <string name="script">Script</string>
+    <string name="submit">Send</string>
+    <string name="evaluate_process">Evaluating...</string>
+    <string name="evaluate_description">We are evaluating your presentation, please wait for a second.</string>
+    <string name="new_pre">New Presentation</string>
+    <string name="quit">Quit</string>
+    <string name="overall_score">YOUR_OVERALL_PRESENTATION_SCORE</string>
+    <string name="new_title">Please enter the title of your presentation</string>
+    <!-- Feedback -->
+    <string name="speech">Speech</string>
+    <string name="visual">Visual</string>
+    <string name="suggestion">Suggestion</string>
+    <!-- Fragment -->
+    <string name="overall_fragment">Overall Assessment</string>
+    <string name="speech_fragment">Speech Assessment</string>
+    <string name="visual_fragment">Visual Assessment</string>
+    <string name="suggestion_fragment">Presentation Suggestions</string>
+    <!-- Speech Fragment Items -->
+    <string name="pace_item">Pace\t\t\t</string>
+    <string name="volumn_item">Volume\t\t\t</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="content_relevance">Content Relevance</string>
+</resources>
