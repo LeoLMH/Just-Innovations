@@ -95,7 +95,7 @@ The contribution division will be added later.
 | Name         | Contribution |
 | ------------ | ------------ |
 | Chenshu Zhu  |              |
-| Minhao Li    |              |
+| Minhao Li    | Build backend connection; Visual Assessment Algorithm             |
 | Junqi Chen   |              |
 | Yuqing Wang  |              |
 | Yangqin Yan  |              |
