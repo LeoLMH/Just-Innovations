@@ -30,6 +30,7 @@ def load_audio_file(filepath, reset=False):
             "onsets": onsets,
             "energy": rms
         }
+
         with open(datapath, "wb") as datafile:
             pickle.dump(data, datafile)
     else:
