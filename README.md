@@ -98,7 +98,7 @@ The contribution division will be added later.
 | Minhao Li    | Build backend connection; Visual Assessment Algorithm             |
 | Junqi Chen   |              |
 | Yuqing Wang  |Collaborate with Minhao Li to work on backend. Allow backend to receive and process audio evaluation request.|
-| Yangqin Yan  |              |
+| Yangqin Yan  | Design frontend layout and implement frontend activities.           |
 | Jiaming Kang |              |
 
 ## Dependencies
