@@ -88,6 +88,16 @@
                 android:textSize="24sp" />
         </TableRow>
 
+
+        <ExpandableListView
+            android:id="@+id/expendableList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@android:color/background_light"
+            android:dividerHeight="0.5dp" />
+
     </TableLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

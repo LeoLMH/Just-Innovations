@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ExpandableListView
+import android.widget.Toast
 import cn.edu.sjtu.yyqdashen.presentation.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -16,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         view = ActivityMainBinding.inflate(layoutInflater)
         view.root.setBackgroundColor(Color.parseColor("#E0E0E0"))
         setContentView(view.root)
+
     }
 
     fun startPost(view: View?) = startActivity(Intent(this, PostPresentation::class.java))
