@@ -15,6 +15,7 @@ class LoadActivity : AppCompatActivity() {
 
         view = ActivityLoadingBinding.inflate(layoutInflater)
         setContentView(view.root)
+        //TODO:: 3 add a while loop that waits for backend response, direct to next activity after receiving
     }
 
     fun extractFeedback(view: View?) = startActivity(Intent(this, Feedback::class.java))
