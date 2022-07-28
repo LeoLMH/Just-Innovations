@@ -10,8 +10,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import java.util.HashMap
 
-class SpeechExpandableListAdapter internal constructor(
-    private val context: SpeechFragment,
+class VisualExpandableListAdapter internal constructor(
+    private val context: VisualFragment,
     private val titleList: List<String>,
     private val dataList: HashMap<String, List<String>>
 ) : BaseExpandableListAdapter() {
@@ -33,11 +33,11 @@ class SpeechExpandableListAdapter internal constructor(
         if (convertView == null) {
             val layoutInflater =
                 this.context.activity?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            convertView = layoutInflater.inflate(R.layout.speech_list_group, null)
+            convertView = layoutInflater.inflate(R.layout.visual_list_group, null)
         }
-        val expandedListTextView = convertView!!.findViewById<TextView>(R.id.SpeechDescription)
+        val expandedListTextView = convertView!!.findViewById<TextView>(R.id.VisualDescription)
         expandedListTextView.text = expandedListText
-        val expandedListImageView = convertView!!.findViewById<ImageView>(R.id.speech_imageView)
+        val expandedListImageView = convertView!!.findViewById<ImageView>(R.id.visual_imageView)
         // set image resource
         expandedListImageView.setImageResource(R.drawable.pre)
         return convertView
@@ -65,9 +65,9 @@ class SpeechExpandableListAdapter internal constructor(
         if (convertView == null) {
             val layoutInflater =
                 this.context.activity?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-            convertView = layoutInflater.inflate(R.layout.speech_list_item, null)
+            convertView = layoutInflater.inflate(R.layout.visual_list_item, null)
         }
-        val listTitleTextView = convertView!!.findViewById<TextView>(R.id.speech_listView)
+        val listTitleTextView = convertView!!.findViewById<TextView>(R.id.visual_listView)
         listTitleTextView.setTypeface(null, Typeface.BOLD)
         listTitleTextView.text = listTitle
         return convertView
