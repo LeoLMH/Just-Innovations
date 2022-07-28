@@ -31,8 +31,6 @@ class SpeechFragment() : Fragment() {
     lateinit var binding: FragmentSpeechBinding
     private var expandableListView: ExpandableListView? = null
     private var volumeScoreView: TextView? = null
-    private var paceScoreView: TextView? = null
-    private var speechScoreView: TextView? = null
     private var adapter: ExpandableListAdapter? = null
     private var titleList: List<String>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,16 +44,13 @@ class SpeechFragment() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         expandableListView = binding.expendableList
-        //binding.volumeScore.text= pre.volume_score
-        //binding.speechScore.text = pre.speech_score
-        //binding.paceScore.text = pre.pace_score
+        volumeScoreView = binding.tmpvolume
+
         Log.e("volume_score", pre.volume_score!!)
-        volumeScoreView= binding.volumeScore
-        speechScoreView=binding.speechScore
-        paceScoreView=binding.paceScore
+
+
         volumeScoreView!!.text = pre.volume_score
-        speechScoreView!!.text=pre.speech_score
-        paceScoreView!!.text=pre.pace_score
+
         if (expandableListView != null) {
             val listData = data
             titleList = ArrayList(listData.keys)
