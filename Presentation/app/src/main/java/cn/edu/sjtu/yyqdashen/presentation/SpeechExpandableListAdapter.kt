@@ -9,6 +9,9 @@ import android.widget.BaseExpandableListAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import java.util.HashMap
+import cn.edu.sjtu.yyqdashen.presentation.PresentationStore.pre
+import cn.edu.sjtu.yyqdashen.presentation.databinding.FragmentSpeechBinding
+
 class SpeechExpandableListAdapter internal constructor(
     private val context: SpeechFragment,
     private val titleList: List<String>,

@@ -63,7 +63,7 @@ object PresentationStore {
         pre.visual_score="visual"
         pre.speech_score="speech"
         pre.pace_score="pace"
-        //pre.gesture_score="gesutre"
+        pre.gesture_score="gesutre"
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 Log.e("getscore", "Failed request")
