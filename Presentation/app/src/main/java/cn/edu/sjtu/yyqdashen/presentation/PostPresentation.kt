@@ -23,7 +23,7 @@ class PostPresentation : AppCompatActivity() {
     private lateinit var view: ActivityPresentationPostBinding
     private var enableSend = true
     private val viewState: PostViewState by viewModels()
-
+    //TODO:: 4 use a variable in pre to store the video and script uploaded by user
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

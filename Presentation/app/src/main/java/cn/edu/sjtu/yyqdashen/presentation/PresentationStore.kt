@@ -12,6 +12,7 @@ import androidx.databinding.ObservableArrayList
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONArray
 import org.json.JSONException
 import java.io.IOException
@@ -25,7 +26,8 @@ object PresentationStore {
 
     private lateinit var queue: RequestQueue
     //private const val serverUrl = "https://101.132.173.58/" /// need to be changed
-    private const val serverUrl = "http://127.0.0.1:5000/"
+    //private const val serverUrl = "http://127.0.0.1:5000/"
+    private const val serverUrl = "http://3.143.112.154:8000/"
     fun postPresentation(){
         val mpFD = MultipartBody.Builder().setType(MultipartBody.FORM)
             .addFormDataPart("script", "this is a test script")
@@ -46,18 +48,26 @@ object PresentationStore {
 
     fun getAudioScore() {
         Log.e("tag","start getting audio score")
+        //TODO:: 4 build a request body that contains a video selected from phone
+        //pre.
         val mpFD = MultipartBody.Builder().setType(MultipartBody.FORM)
-            .addFormDataPart("username", "")
+            .addFormDataPart("recording", "")
+        val js = JSONObject("{a:8}")
         val request = Request.Builder()
             //.method("POST",mpFD.build())
             .url(serverUrl+"audio/")
-            .post(mpFD.build())
+            .post("avc".toRequestBody())
             .build()
-
+        pre.volume_score="volume"
+        pre.facial_score="facial"
+        pre.visual_score="visual"
+        pre.speech_score="speech"
+        pre.pace_score="pace"
+        //pre.gesture_score="gesutre"
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                Log.e("getscore", "Failed GET request")
-                getAudioScore()
+                Log.e("getscore", "Failed request")
+                Log.e("error",e.toString())
             }
 
             override fun onResponse(call: Call, response: Response) {
