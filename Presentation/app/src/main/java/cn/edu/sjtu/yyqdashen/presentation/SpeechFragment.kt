@@ -44,12 +44,12 @@ class SpeechFragment() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         expandableListView = binding.expendableList
-        volumeScoreView= binding.tmpvolume
+        volumeScoreView = binding.tmpvolume
 
         Log.e("volume_score", pre.volume_score!!)
 
 
-        volumeScoreView!!.setText(pre.volume_score)
+        volumeScoreView!!.text = pre.volume_score
 
         if (expandableListView != null) {
             val listData = data
