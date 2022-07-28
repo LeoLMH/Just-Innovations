@@ -41,20 +41,56 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/visual_title" />
 
-    <TextView
-        android:id="@+id/gesture_score"
-        android:layout_width="wrap_content"
+    <TableLayout
+        android:id="@+id/visual_assessment_table"
+        android:layout_width="312dp"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="76dp"
-        tools:layout_editor_absoluteY="327dp" />
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/score_circle2">
 
-    <TextView
-        android:id="@+id/facial_score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="89dp"
-        tools:layout_editor_absoluteY="377dp" />
+        <TableRow
+            android:id="@+id/gesture_row"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/gesture_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gesture_item"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/gesture_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="22"
+                android:textSize="24sp" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/facial_row"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/facial_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/facial_item"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/facial_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="11"
+                android:textSize="24sp" />
+
+        </TableRow>
+
+    </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
