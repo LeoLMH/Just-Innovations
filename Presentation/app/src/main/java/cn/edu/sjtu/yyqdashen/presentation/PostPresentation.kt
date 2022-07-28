@@ -15,6 +15,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
+import cn.edu.sjtu.yyqdashen.presentation.PresentationStore.getAudioScore
 import cn.edu.sjtu.yyqdashen.presentation.databinding.ActivityPresentationPostBinding
 import cn.edu.sjtu.yyqdashen.presentation.PresentationStore.pre
 
@@ -87,6 +88,7 @@ class PostPresentation : AppCompatActivity() {
     }*/
     fun fetchResult(view: View?){
         pre.volume_score="8888"
+        getAudioScore()
         startActivity(Intent(this, LoadActivity::class.java))
     }
 
