@@ -69,9 +69,24 @@ class PostPresentation : AppCompatActivity() {
             forScriptResult.launch("*/*")
         }
 
+        view.sendbutton.setOnClickListener(){
+
+        }
+
 
     }
 
+    private fun submitpresentation() {
+        val chatt = Chatt(username = view.usernameTextView.text.toString(),
+            message = view.messageTextView.text.toString())
+
+        postChatt(applicationContext, chatt, viewState.imageUri, viewState.videoUri) { msg ->
+            runOnUiThread {
+                toast(msg)
+            }
+            finish()
+        }
+    }
     fun fetchResult(view: View?) = startActivity(Intent(this, LoadActivity::class.java))
 
     private fun mediaStoreAlloc(mediaType: String): Uri? {

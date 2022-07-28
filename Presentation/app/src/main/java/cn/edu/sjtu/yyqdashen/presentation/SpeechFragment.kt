@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ExpandableListAdapter
 import android.widget.ExpandableListView
+import android.widget.TextView
 import android.widget.Toast
 import cn.edu.sjtu.yyqdashen.presentation.ExpandableListData.data
 import cn.edu.sjtu.yyqdashen.presentation.databinding.FragmentSpeechBinding
@@ -21,12 +22,13 @@ private const val ARG_PARAM2 = "param2"
  * Use the [SpeechFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class SpeechFragment : Fragment() {
+class SpeechFragment(pre: Presentation) : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
     lateinit var binding: FragmentSpeechBinding
     private var expandableListView: ExpandableListView? = null
+    private var volumeScoreView: TextView? = null
     private var adapter: ExpandableListAdapter? = null
     private var titleList: List<String>? = null
 
@@ -41,6 +43,9 @@ class SpeechFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         expandableListView = binding.expendableList
+        volumeScoreView= binding.tmpvolume
+        volumeScoreView.text = pre.
+
         if (expandableListView != null) {
             val listData = data
             titleList = ArrayList(listData.keys)
