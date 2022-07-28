@@ -7,14 +7,79 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley.newRequestQueue
 import org.json.JSONObject
 import kotlin.reflect.full.declaredMemberProperties
+import android.net.Uri
+import androidx.databinding.ObservableArrayList
+import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.json.JSONArray
+import org.json.JSONException
+import java.io.IOException
+import kotlin.reflect.full.declaredMemberProperties
 
 object PresentationStore {
-    private val _pres = arrayListOf<Presentation>()
-    val pres: List<Presentation> = _pres
+    private val client = OkHttpClient()
+    private val _pre = Presentation()
+    val pre = Presentation()
     private val nFields = Presentation::class.declaredMemberProperties.size
 
     private lateinit var queue: RequestQueue
-    private const val serverUrl = "https://101.132.173.58/" /// need to be changed
+    //private const val serverUrl = "https://101.132.173.58/" /// need to be changed
+    //private const val serverUrl = "http://127.0.0.1:5000/"
+    private const val serverUrl = "http://3.143.112.154:8000/"
+    fun postPresentation(){
+        val mpFD = MultipartBody.Builder().setType(MultipartBody.FORM)
+            .addFormDataPart("script", "this is a test script")
+        val request = Request.Builder()
+            .url(serverUrl+"postpresentation/").post(mpFD.build()).build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                if (response.isSuccessful) {
+                    //getScore()
+                }
+            }
+        })
+    }
+
+    fun getAudioScore() {
+        Log.e("tag","start getting audio score")
+        //TODO:: 4 build a request body that contains a video selected from phone
+        //pre.
+        val mpFD = MultipartBody.Builder().setType(MultipartBody.FORM)
+            .addFormDataPart("recording", "")
+        val js = JSONObject("{a:8}")
+        val request = Request.Builder()
+            //.method("POST",mpFD.build())
+            .url(serverUrl+"audio/")
+            .post("avc".toRequestBody())
+            .build()
+        pre.volume_score="volume"
+        pre.facial_score="facial"
+        pre.visual_score="visual"
+        pre.speech_score="speech"
+        pre.pace_score="pace"
+        //pre.gesture_score="gesutre"
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.e("getscore", "Failed request")
+                Log.e("error",e.toString())
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                if (response.isSuccessful) {
+                    val volume_scoreReceived = try { JSONObject(response.body?.string() ?: "").getString("volume_score")} catch (e: JSONException) { "error" }
+
+                    pre.volume_score = volume_scoreReceived
+                    Log.e("volume score is",pre.volume_score!!)
+                }
+            }
+        })
+    }
 }
 
 //fun postPresentation(context: Context, pres: Presentation) {

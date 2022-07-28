@@ -51,18 +51,19 @@
         app:layout_constraintTop_toBottomOf="@+id/score_circle">
 
         <TableRow
+            android:id="@+id/volume_row"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/volumn_item"
+                android:id="@+id/volume_item"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/volumn_item"
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/volumn_score"
+                android:id="@+id/volume_score"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="85"
@@ -70,6 +71,7 @@
         </TableRow>
 
         <TableRow
+            android:id="@+id/pace_row"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -97,7 +99,6 @@
             android:dividerHeight="0.5dp" />
 
     </TableLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,13 +15,15 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
+import cn.edu.sjtu.yyqdashen.presentation.PresentationStore.getAudioScore
 import cn.edu.sjtu.yyqdashen.presentation.databinding.ActivityPresentationPostBinding
+import cn.edu.sjtu.yyqdashen.presentation.PresentationStore.pre
 
 class PostPresentation : AppCompatActivity() {
     private lateinit var view: ActivityPresentationPostBinding
     private var enableSend = true
     private val viewState: PostViewState by viewModels()
-
+    //TODO:: 4 use a variable in pre to store the video and script uploaded by user
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -70,9 +72,25 @@ class PostPresentation : AppCompatActivity() {
         }
 
 
-    }
 
-    fun fetchResult(view: View?) = startActivity(Intent(this, LoadActivity::class.java))
+    }
+    /*
+    private fun submitpresentation() {
+        val chatt = Chatt(username = view.usernameTextView.text.toString(),
+            message = view.messageTextView.text.toString())
+
+        postChatt(applicationContext, chatt, viewState.imageUri, viewState.videoUri) { msg ->
+            runOnUiThread {
+                toast(msg)
+            }
+            finish()
+        }
+    }*/
+    fun fetchResult(view: View?){
+        pre.volume_score="8888"
+        getAudioScore()
+        startActivity(Intent(this, LoadActivity::class.java))
+    }
 
     private fun mediaStoreAlloc(mediaType: String): Uri? {
         val values = ContentValues()
