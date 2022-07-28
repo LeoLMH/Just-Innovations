@@ -4,7 +4,7 @@ from audio import load_audio_file,get_volume,get_wordspersecond
 import flask
 import time
 from flask import Flask, flash, request, redirect, url_for, jsonify
-import ffmpy
+
 import os
 
 app = flask.Flask(__name__)
@@ -15,10 +15,10 @@ app.config["DEBUG"] = True
 def test():
     return "<h1>Distant Reading Archive</h1><p>This site is a prototype API for distant reading of science fiction novels.</p>"
 
-@app.route('/audio', methods=['POST'])
+@app.route('/audio/', methods=['POST'])
 def audio_handler():
     print("audio handler")
-
+    '''
     rec = request.files['recording']
     fmt = rec.filename.split(".")[-1]
 
@@ -43,6 +43,9 @@ def audio_handler():
         volume = float(average_volume),
         word = float(words_per_sec)
     )
-
+    '''
+    return jsonify(
+        volume_score = "999",
+    )
 
 app.run()
