@@ -6,55 +6,130 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".VisualFragment">
 
-
-    <TextView
-        android:id="@+id/visual_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/visual_fragment"
-        android:textSize="24sp"
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/visual_score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="93"
-        android:textAlignment="center"
-        android:textSize="48sp"
-        app:layout_constraintBottom_toBottomOf="@+id/score_circle2"
-        app:layout_constraintEnd_toEndOf="@+id/score_circle2"
-        app:layout_constraintStart_toStartOf="@+id/score_circle2"
-        app:layout_constraintTop_toTopOf="@+id/score_circle2" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/score_circle2"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="8dp"
-        android:layout_weight="1"
-        android:src="@drawable/circle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/visual_title" />
+            <TextView
+                android:id="@+id/visual_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/visual_fragment"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/gesture_score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="76dp"
-        tools:layout_editor_absoluteY="327dp" />
+            <TextView
+                android:id="@+id/visual_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="93"
+                android:textAlignment="center"
+                android:textSize="48sp"
+                app:layout_constraintBottom_toBottomOf="@+id/score_circle2"
+                app:layout_constraintEnd_toEndOf="@+id/score_circle2"
+                app:layout_constraintStart_toStartOf="@+id/score_circle2"
+                app:layout_constraintTop_toTopOf="@+id/score_circle2" />
 
-    <TextView
-        android:id="@+id/facial_score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="89dp"
-        tools:layout_editor_absoluteY="377dp" />
+            <ImageView
+                android:id="@+id/score_circle2"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:src="@drawable/circle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/visual_title" />
+
+            <TableLayout
+                android:id="@+id/visual_assessment_table"
+                android:layout_width="312dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/score_circle2">
+
+                <TableRow
+                    android:id="@+id/gesture_row"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/gesture_item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/gesture_item"
+                        android:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/gesture_score"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="22"
+                        android:textSize="24sp" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/facial_row"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/facial_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/facial_item"
+                        android:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/facial_score"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="11"
+                        android:textSize="24sp" />
+
+                </TableRow>
+
+            </TableLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/visual_assessment_table"
+                tools:layout_editor_absoluteX="16dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ExpandableListView
+                        android:id="@+id/visual_expendableList"
+                        android:layout_width="match_parent"
+                        android:layout_height="400dp"
+                        android:divider="@android:color/background_light"
+                        android:dividerHeight="0.5dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        tools:layout_editor_absoluteX="-36dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </ScrollView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

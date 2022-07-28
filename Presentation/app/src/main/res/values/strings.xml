@@ -28,6 +28,9 @@
     <!-- Speech Fragment Items -->
     <string name="pace_item">Pace\t\t\t</string>
     <string name="volumn_item">Volume\t\t\t</string>
+    <!-- Visual Fragment Items -->
+    <string name="gesture_item">Gesture\t\t\t</string>
+    <string name="facial_item">Facial\t\t\t</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="content_relevance">Content Relevance</string>
