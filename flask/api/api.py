@@ -1,4 +1,7 @@
+from concurrent.futures import thread
 import json
+
+from grpc import server
 
 from audio import load_audio_file,get_volume,get_wordspersecond
 import flask
@@ -49,3 +52,4 @@ def audio_handler():
     )
 
 app.run()
+#server(app,host='12.34.56.78',port=8080,thread=1)
