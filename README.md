@@ -92,14 +92,14 @@ This section is left blank for now.
 
 The contribution division will be added later.
 
-| Name         | Contribution |
-| ------------ | ------------ |
+| Name         | Contribution                                                 |
+| ------------ | ------------------------------------------------------------ |
 | Chenshu Zhu  | Build presentation audio rating api. Build content-topic correlation rating api. Manage git repo. |
-| Minhao Li    | Build backend connection; Visual Assessment Algorithm. |
-| Junqi Chen   |              |
+| Minhao Li    | Build backend connection; Visual Assessment Algorithm.       |
+| Junqi Chen   | Collaborate with Yangqin Yan to work on frontend layout design and frontend activities implementation. The original repo of frontend is shown here: https://github.com/yangqin-yan/VE441_FrontEnd |
 | Yuqing Wang  | Collaborate with Minhao Li to work on backend. Allow backend to receive and process audio evaluation request. |
-| Yangqin Yan  | Design frontend layout and implement frontend activities. |
-| Jiaming Kang |              |
+| Yangqin Yan  | Design frontend layout and implement frontend activities.    |
+| Jiaming Kang |                                                              |
 
 ## Dependencies
 
