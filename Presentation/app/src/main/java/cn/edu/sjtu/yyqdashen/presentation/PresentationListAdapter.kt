@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import cn.edu.sjtu.yyqdashen.presentation.databinding.ListItemPresentationBinding
-
+/*
 class PresentationListAdapter(context: Context, pres: List<Presentation>) :
     ArrayAdapter<Presentation>(context, 0, pres) {
 
@@ -43,5 +43,5 @@ class PresentationListAdapter(context: Context, pres: List<Presentation>) :
 
         return listItemView.root
     }
-}
+}*/
 
