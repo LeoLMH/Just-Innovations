@@ -6,7 +6,7 @@
 
 
     <TextView
-        android:id="@+id/speech_listView"
+        android:id="@+id/visual_listView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:paddingStart="?android:attr/expandableListPreferredItemPaddingLeft"
