@@ -100,13 +100,5 @@
 
     </TableLayout>
 
-    <TextView
-        android:id="@+id/tmpvolume"
-        android:layout_width="93dp"
-        android:layout_height="43dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="86dp"
-        tools:layout_editor_absoluteY="607dp" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

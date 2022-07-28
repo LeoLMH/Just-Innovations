@@ -41,4 +41,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/visual_title" />
 
+    <TextView
+        android:id="@+id/gesture_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="76dp"
+        tools:layout_editor_absoluteY="327dp" />
+
+    <TextView
+        android:id="@+id/facial_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="89dp"
+        tools:layout_editor_absoluteY="377dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
