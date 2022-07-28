@@ -24,8 +24,8 @@ object PresentationStore {
     private val nFields = Presentation::class.declaredMemberProperties.size
 
     private lateinit var queue: RequestQueue
-    private const val serverUrl = "https://101.132.173.58/" /// need to be changed
-
+    //private const val serverUrl = "https://101.132.173.58/" /// need to be changed
+    private const val serverUrl = "http://127.0.0.1:5000/"
     fun postPresentation(){
         val mpFD = MultipartBody.Builder().setType(MultipartBody.FORM)
             .addFormDataPart("script", "this is a test script")
@@ -38,27 +38,34 @@ object PresentationStore {
 
             override fun onResponse(call: Call, response: Response) {
                 if (response.isSuccessful) {
-                    getScore()
+                    //getScore()
                 }
             }
         })
     }
 
-    fun getScore() {
+    fun getAudioScore() {
+        Log.e("tag","start getting audio score")
+        val mpFD = MultipartBody.Builder().setType(MultipartBody.FORM)
+            .addFormDataPart("username", "")
         val request = Request.Builder()
-            .url(serverUrl+"getScore/")
+            //.method("POST",mpFD.build())
+            .url(serverUrl+"audio/")
+            .post(mpFD.build())
             .build()
+
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                Log.e("getChatts", "Failed GET request")
+                Log.e("getscore", "Failed GET request")
+                getAudioScore()
             }
 
             override fun onResponse(call: Call, response: Response) {
                 if (response.isSuccessful) {
-                    val chattsReceived = try { JSONObject(response.body?.string() ?: "").getJSONArray("chatts") } catch (e: JSONException) { JSONArray() }
                     val volume_scoreReceived = try { JSONObject(response.body?.string() ?: "").getString("volume_score")} catch (e: JSONException) { "error" }
 
                     pre.volume_score = volume_scoreReceived
+                    Log.e("volume score is",pre.volume_score!!)
                 }
             }
         })

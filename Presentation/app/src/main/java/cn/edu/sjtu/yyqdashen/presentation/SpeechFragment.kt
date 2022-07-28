@@ -49,7 +49,7 @@ class SpeechFragment() : Fragment() {
         Log.e("volume_score", pre.volume_score!!)
 
 
-        volumeScoreView!!.setText(pre.volume_score)
+        volumeScoreView!!.text = pre.volume_score
 
         if (expandableListView != null) {
             val listData = data
