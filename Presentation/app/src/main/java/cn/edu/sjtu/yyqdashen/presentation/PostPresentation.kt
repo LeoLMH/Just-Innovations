@@ -16,6 +16,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import cn.edu.sjtu.yyqdashen.presentation.databinding.ActivityPresentationPostBinding
+import cn.edu.sjtu.yyqdashen.presentation.PresentationStore.pre
 
 class PostPresentation : AppCompatActivity() {
     private lateinit var view: ActivityPresentationPostBinding
@@ -69,13 +70,10 @@ class PostPresentation : AppCompatActivity() {
             forScriptResult.launch("*/*")
         }
 
-        view.sendbutton.setOnClickListener(){
-
-        }
 
 
     }
-
+    /*
     private fun submitpresentation() {
         val chatt = Chatt(username = view.usernameTextView.text.toString(),
             message = view.messageTextView.text.toString())
@@ -86,8 +84,11 @@ class PostPresentation : AppCompatActivity() {
             }
             finish()
         }
+    }*/
+    fun fetchResult(view: View?){
+        pre.volume_score="8888"
+        startActivity(Intent(this, LoadActivity::class.java))
     }
-    fun fetchResult(view: View?) = startActivity(Intent(this, LoadActivity::class.java))
 
     private fun mediaStoreAlloc(mediaType: String): Uri? {
         val values = ContentValues()

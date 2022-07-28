@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import cn.edu.sjtu.yyqdashen.presentation.databinding.FragmentSpeechBinding
 import cn.edu.sjtu.yyqdashen.presentation.databinding.ListItemPresentationBinding
-
+/*
 class speechAdapter(context: Context, pres: Presentation) :
     lateinit var binding: FragmentSpeechBinding
 
@@ -39,3 +39,4 @@ class speechAdapter(context: Context, pres: Presentation) :
         return binding.root
     }
 }
+*/
