@@ -49,6 +49,7 @@ class PostPresentation : AppCompatActivity() {
                 uri?.let {
                     if (it.toString().contains("video")) {
                         viewState.videoUri = it
+                        pre.video_uri = it
                         viewState.videoIcon = android.R.drawable.presence_video_busy
                         view.videoButton.setImageResource(viewState.videoIcon)
                     } else {
@@ -64,7 +65,7 @@ class PostPresentation : AppCompatActivity() {
             registerForActivityResult(ActivityResultContracts.GetContent(), fun(uri: Uri?){
                 uri?.let{
                     viewState.scriptUri = it
-
+                    pre.script_uri = it
                 } ?: run {Log.d("Pick script", "failed")}
             })
         view.scriptButton.setOnClickListener{

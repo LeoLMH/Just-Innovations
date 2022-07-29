@@ -96,5 +96,5 @@ def score():
     )
 
 
-app.run(host='0.0.0.0',port='8000')
+app.run()
 #server(app,host='12.34.56.78',port=8080,thread=1)

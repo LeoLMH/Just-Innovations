@@ -12,6 +12,7 @@ import android.net.Uri
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat.startActivity
+import androidx.core.net.toFile
 import androidx.databinding.ObservableArrayList
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
@@ -32,9 +33,16 @@ object PresentationStore {
     //private const val serverUrl = "https://101.132.173.58/" /// need to be changed
     private const val serverUrl = "http://10.0.2.2:5000/"
 //    private const val serverUrl = "http://3.143.112.154:8000/"
+    //private const val serverUrl = "http://127.0.0.1:5000/"
+    //private const val serverUrl = "http://3.143.112.154:8000/"
     fun postPresentation(){
         val mpFD = MultipartBody.Builder().setType(MultipartBody.FORM)
             .addFormDataPart("script", "this is a test script")
+        pre.video_uri?.run {
+            toFile()?.let{
+                mpFD.addFormDataPart("recording","presentation",it.asRequestBody("mp4".toMediaType()))
+            }
+        }
         val request = Request.Builder()
             .url(serverUrl+"postpresentation/").post(mpFD.build()).build()
 
@@ -53,15 +61,21 @@ object PresentationStore {
     fun getAudioScore():String{
         var stat:String = "not done"
         Log.e("tag","start getting audio score")
+        Log.e("video_uri",pre.video_uri.toString())
         //TODO:: 4 build a request body that contains a video selected from phone
         //pre.
         val mpFD = MultipartBody.Builder().setType(MultipartBody.FORM)
-            .addFormDataPart("recording", "")
-        val js = JSONObject("{a:8}")
+            .addFormDataPart("script", "this is a test script")
+        pre.video_uri?.run {
+            toFile()?.let{
+                mpFD.addFormDataPart("recording","presentation",it.asRequestBody("mp4".toMediaType()))
+            }
+        }
+        Log.e("video_uri",pre.video_uri.toString())
         val request = Request.Builder()
             //.method("POST",mpFD.build())
-            .url(serverUrl+"audio/")
-            .post("avc".toRequestBody())
+            .url(serverUrl+"score/")
+            .post(mpFD.build())
             .build()
         pre.volume_score="volume"
         pre.facial_score="facial"
