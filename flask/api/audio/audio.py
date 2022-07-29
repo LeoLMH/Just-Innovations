@@ -3,6 +3,12 @@ import os
 import pickle
 import librosa
 import numpy as np
+import requests
+
+
+# https://www.assemblyai.com/
+API_KEY = "86b72a9847804598bf224fc1c26d45b0"
+
 
 def load_audio_file(filepath, reset=False):
     """
@@ -13,7 +19,6 @@ def load_audio_file(filepath, reset=False):
         "energy": rms
     }  
     """
-
     basename = os.path.basename(filepath)
     filename, ext = os.path.splitext(basename)
     if not os.path.exists(".cache"):
@@ -62,5 +67,52 @@ def get_wordspersecond(data, tic=0, toc=None):
     words_per_sec = words_count / (xmax / (sr + 0.0) - tic)
     return words_per_sec
 
+
 def volume_handler(filepath, reset=False):
     data = audio.load_audio_file(test_audio, reset = False)
+
+
+def read_file_generator(filepath, chunk_size=5242880):
+    """
+    A helper function for audio_to_text().
+    """
+    with open(filepath, 'rb') as _file:
+        while True:
+            data = _file.read(chunk_size)
+            if not data:
+                break
+            yield data
+
+
+def audio_to_text(filepath):
+    """
+    Returns the transcribed text of the audio file specified in the filepath.
+    Note that the audio file must be in .wav format.
+    """
+    headers = {
+        'authorization': API_KEY
+    }
+    response = requests.post('https://api.assemblyai.com/v2/upload',
+                            headers=headers,
+                            data=read_file_generator(filepath))
+    cloud_url = response.json()["upload_url"]
+    endpoint = "https://api.assemblyai.com/v2/transcript"
+    json = {
+        "audio_url": cloud_url
+    }
+    headers = {
+        "authorization": API_KEY,
+        "content-type": "application/json"
+    }
+    response = requests.post(endpoint, json=json, headers=headers)
+    transcript_id = response.json()['id']
+    endpoint = f"https://api.assemblyai.com/v2/transcript/{transcript_id}"
+    headers = {
+        "authorization": API_KEY,
+    }
+    # use a while loop to wait for the api to return 
+    while True:
+        response = requests.get(endpoint, headers=headers)
+        if response.json()['status'] == "completed":
+            break
+    return response.json()["text"]
