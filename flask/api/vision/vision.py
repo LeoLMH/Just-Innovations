@@ -69,5 +69,4 @@ def get_facial_gesture_score(path):
         hand_score=90
     else:
         hand_score=100
-    print(hand_score,facial_score)
-    return hand_score,facial_score
+    return (hand_score+facial_score)/20,hand_score/10,facial_score/10
