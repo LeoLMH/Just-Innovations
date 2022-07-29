@@ -41,6 +41,8 @@ class LoadActivity : AppCompatActivity() {
         post.start()
     }
 
+    // This line of code is used for skipping the waiting process of loading page,
+    // should be deleted later.
     fun extractFeedback(view: View?) = startActivity(Intent(this, Feedback::class.java))
 
 }

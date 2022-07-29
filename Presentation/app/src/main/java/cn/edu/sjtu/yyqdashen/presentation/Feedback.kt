@@ -15,6 +15,13 @@ class Feedback : AppCompatActivity() {
         binding = ActivityFeedbackBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val actionbar = supportActionBar
+        //set actionbar title
+//        actionbar!!.title = "Feedback"
+        //set back button
+        actionbar?.setDisplayHomeAsUpEnabled(true)
+        actionbar?.setDisplayHomeAsUpEnabled(true)
+
         binding.overallReturnButton.setOnClickListener {
             replaceFragment(OverallFragment())
         }
@@ -37,6 +44,11 @@ class Feedback : AppCompatActivity() {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.fragmentContainerView, fragment)
         fragmentTransaction.commit()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
 }
