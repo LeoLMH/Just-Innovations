@@ -1,6 +1,7 @@
 package cn.edu.sjtu.yyqdashen.presentation
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
@@ -8,6 +9,9 @@ import com.android.volley.toolbox.Volley.newRequestQueue
 import org.json.JSONObject
 import kotlin.reflect.full.declaredMemberProperties
 import android.net.Uri
+import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat.startActivity
 import androidx.databinding.ObservableArrayList
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
@@ -26,8 +30,8 @@ object PresentationStore {
 
     private lateinit var queue: RequestQueue
     //private const val serverUrl = "https://101.132.173.58/" /// need to be changed
-    //private const val serverUrl = "http://127.0.0.1:5000/"
-    private const val serverUrl = "http://3.143.112.154:8000/"
+    private const val serverUrl = "http://10.0.2.2:5000/"
+//    private const val serverUrl = "http://3.143.112.154:8000/"
     fun postPresentation(){
         val mpFD = MultipartBody.Builder().setType(MultipartBody.FORM)
             .addFormDataPart("script", "this is a test script")
@@ -46,7 +50,8 @@ object PresentationStore {
         })
     }
 
-    fun getAudioScore() {
+    fun getAudioScore():String{
+        var stat:String = "not done"
         Log.e("tag","start getting audio score")
         //TODO:: 4 build a request body that contains a video selected from phone
         //pre.
@@ -68,6 +73,7 @@ object PresentationStore {
             override fun onFailure(call: Call, e: IOException) {
                 Log.e("getscore", "Failed request")
                 Log.e("error",e.toString())
+                stat = "failed"
             }
 
             override fun onResponse(call: Call, response: Response) {
@@ -76,9 +82,13 @@ object PresentationStore {
 
                     pre.volume_score = volume_scoreReceived
                     Log.e("volume score is",pre.volume_score!!)
+                    stat = "done"
                 }
             }
         })
+        while(stat != "failed" && stat != "done"){
+        }
+        return stat
     }
 }
 

@@ -86,11 +86,6 @@ class PostPresentation : AppCompatActivity() {
             finish()
         }
     }*/
-    fun fetchResult(view: View?){
-        pre.volume_score="8888"
-        getAudioScore()
-        startActivity(Intent(this, LoadActivity::class.java))
-    }
 
     private fun mediaStoreAlloc(mediaType: String): Uri? {
         val values = ContentValues()
@@ -138,4 +133,5 @@ class PostPresentation : AppCompatActivity() {
         var scriptUri: Uri? = null
     }
 
+    fun startLoad(view: View?) = startActivity(Intent(this, LoadActivity::class.java))
 }
