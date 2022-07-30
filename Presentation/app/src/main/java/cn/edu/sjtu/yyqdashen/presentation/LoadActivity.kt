@@ -25,7 +25,7 @@ class LoadActivity : AppCompatActivity() {
                 try {
                     var stat:String
                     super.run()
-                    PresentationStore.getAudioScore()
+                    PresentationStore.getAudioScore(applicationContext)
 
                 } catch (e: Exception) {
                 } finally {

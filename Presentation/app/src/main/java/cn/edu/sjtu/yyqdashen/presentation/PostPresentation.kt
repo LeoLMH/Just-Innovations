@@ -134,5 +134,9 @@ class PostPresentation : AppCompatActivity() {
         var scriptUri: Uri? = null
     }
 
-    fun startLoad(view: View?) = startActivity(Intent(this, LoadActivity::class.java))
+    fun startLoad(view: View?) {
+
+        startActivity(Intent(this, LoadActivity::class.java))
+
+    }
 }

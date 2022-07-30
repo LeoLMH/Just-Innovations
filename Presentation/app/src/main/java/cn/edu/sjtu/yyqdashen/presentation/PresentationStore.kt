@@ -8,21 +8,25 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley.newRequestQueue
 import org.json.JSONObject
 import kotlin.reflect.full.declaredMemberProperties
-import android.net.Uri
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat.startActivity
-import androidx.core.net.toFile
 import androidx.databinding.ObservableArrayList
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONArray
 import org.json.JSONException
+import java.io.File
 import java.io.IOException
 import kotlin.reflect.full.declaredMemberProperties
-
+import android.database.Cursor
+import android.net.Uri
+import android.widget.ImageView
+import android.widget.Toast
+import cn.edu.sjtu.yyqdashen.presentation.toFile
 object PresentationStore {
     private val client = OkHttpClient()
     private val _pre = Presentation()
@@ -31,34 +35,13 @@ object PresentationStore {
 
     private lateinit var queue: RequestQueue
     //private const val serverUrl = "https://101.132.173.58/" /// need to be changed
-    private const val serverUrl = "http://10.0.2.2:5000/"
-//    private const val serverUrl = "http://3.143.112.154:8000/"
+    //private const val serverUrl = "http://10.0.2.2:5000/"
+    private const val serverUrl = "http://3.143.112.154:8000/"
     //private const val serverUrl = "http://127.0.0.1:5000/"
     //private const val serverUrl = "http://3.143.112.154:8000/"
-    fun postPresentation(){
-        val mpFD = MultipartBody.Builder().setType(MultipartBody.FORM)
-            .addFormDataPart("script", "this is a test script")
-        pre.video_uri?.run {
-            toFile()?.let{
-                mpFD.addFormDataPart("recording","presentation",it.asRequestBody("mp4".toMediaType()))
-            }
-        }
-        val request = Request.Builder()
-            .url(serverUrl+"postpresentation/").post(mpFD.build()).build()
 
-        client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-            }
 
-            override fun onResponse(call: Call, response: Response) {
-                if (response.isSuccessful) {
-                    //getScore()
-                }
-            }
-        })
-    }
-
-    fun getAudioScore():String{
+    fun getAudioScore(context: Context):String{
         var stat:String = "not done"
         Log.e("tag","start getting audio score")
         Log.e("video_uri",pre.video_uri.toString())
@@ -66,17 +49,16 @@ object PresentationStore {
         //pre.
         val mpFD = MultipartBody.Builder().setType(MultipartBody.FORM)
             .addFormDataPart("script", "this is a test script")
-        pre.video_uri?.run {
-            toFile()?.let{
-                mpFD.addFormDataPart("recording","presentation",it.asRequestBody("mp4".toMediaType()))
-            }
-        }
+        Log.e("video_uri",pre.video_uri.toString())
+        pre.video_uri?.toFile(context)
+            ?.let { mpFD.addFormDataPart("recording","presentation", it.asRequestBody("video/mp4".toMediaType())) }
         Log.e("video_uri",pre.video_uri.toString())
         val request = Request.Builder()
             //.method("POST",mpFD.build())
             .url(serverUrl+"score/")
             .post(mpFD.build())
             .build()
+        Log.e("video_uri",pre.video_uri.toString())
         pre.volume_score="volume"
         pre.facial_score="facial"
         pre.visual_score="visual"
@@ -92,9 +74,27 @@ object PresentationStore {
 
             override fun onResponse(call: Call, response: Response) {
                 if (response.isSuccessful) {
-                    val volume_scoreReceived = try { JSONObject(response.body?.string() ?: "").getString("volume_score")} catch (e: JSONException) { "error" }
+                    val json = JSONObject(response.body?.string() ?: "")
+                    val volume_scoreReceived = try { json.getString("volume_score")} catch (e: JSONException) { "error" }
 
+                    val facial_scoreReceived = try { json.getString("facial_score")} catch (e: JSONException) { "error" }
+
+                    val visual_scoreReceived = try { json.getString("visual_score")} catch (e: JSONException) { "error" }
+
+                    val speech_scoreReceived = try { json.getString("speech_score")} catch (e: JSONException) { "error" }
+                    val pace_scoreReceived = try { json.getString("pace_score")} catch (e: JSONException) { "error" }
+                    val gesture_scoreReceived = try { json.getString("gesture_score")} catch (e: JSONException) { "error" }
+                    val overall_scoreReceived = try { json.getString("overall_score")} catch (e: JSONException) { "error" }
+                    val suggestion = try { json.getString("suggestion")} catch (e: JSONException) { "error" }
+
+                    pre.facial_score=facial_scoreReceived
+                    pre.visual_score=visual_scoreReceived
+                    pre.speech_score=speech_scoreReceived
+                    pre.pace_score=pace_scoreReceived
+                    pre.gesture_score=gesture_scoreReceived
                     pre.volume_score = volume_scoreReceived
+                    pre.suggestion=suggestion
+                    pre.overall_score=overall_scoreReceived
                     Log.e("volume score is",pre.volume_score!!)
                     stat = "done"
                 }
