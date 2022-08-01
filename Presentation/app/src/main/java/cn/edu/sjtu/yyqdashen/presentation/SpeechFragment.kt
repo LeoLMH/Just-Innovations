@@ -6,10 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ExpandableListAdapter
-import android.widget.ExpandableListView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import cn.edu.sjtu.yyqdashen.presentation.ExpandableListData.data
 import cn.edu.sjtu.yyqdashen.presentation.databinding.FragmentSpeechBinding
 
@@ -31,6 +28,7 @@ class SpeechFragment() : Fragment() {
     private var expandableListView: ExpandableListView? = null
 
     private var volumeScoreView: TextView? = null
+    private var volumeImageView: ImageView? = null
     private var paceScoreView: TextView? = null
     private var speechScoreView: TextView? = null
 
@@ -52,12 +50,14 @@ class SpeechFragment() : Fragment() {
 //        binding.speechScore.text = pre.speech_score
 //        binding.paceScore.text = pre.pace_score
 //        Log.e("volume_score", pre.volume_score!!)
-        volumeScoreView= binding.volumeScore
+        volumeScoreView=binding.volumeScore
+        volumeImageView=binding.volumeImage
         speechScoreView=binding.speechScore
         paceScoreView=binding.paceScore
         volumeScoreView!!.text = pre.volume_score
         speechScoreView!!.text=pre.speech_score
         paceScoreView!!.text=pre.pace_score
+        volumeImageView!!.setImageResource(R.drawable.pre);
         if (expandableListView != null) {
             val listData = data
             titleList = ArrayList(listData.keys)
