@@ -60,7 +60,8 @@ class SpeechFragment() : Fragment() {
         paceScoreView!!.text=pre.pace_score
         if (expandableListView != null) {
             val listData = data
-            titleList = ArrayList(listData.keys)
+            titleList = ArrayList()
+            (titleList as ArrayList<String>).add("Volume")
             adapter = SpeechExpandableListAdapter(this, titleList as ArrayList<String>, listData)
             expandableListView!!.setAdapter(adapter)
             expandableListView!!.setOnGroupExpandListener { groupPosition ->
@@ -77,20 +78,20 @@ class SpeechFragment() : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
-            expandableListView!!.setOnChildClickListener { _, _, groupPosition, childPosition, _ ->
-                Toast.makeText(
-                    context,
-                    "Clicked: " + (titleList as ArrayList<String>)[groupPosition] + " -> " + listData[(
-                            titleList as
-                                    ArrayList<String>
-                            )
-                            [groupPosition]]!!.get(
-                        childPosition
-                    ),
-                    Toast.LENGTH_SHORT
-                ).show()
-                false
-            }
+//            expandableListView!!.setOnChildClickListener { _, _, groupPosition, childPosition, _ ->
+//                Toast.makeText(
+//                    context,
+//                    "Clicked: " + (titleList as ArrayList<String>)[groupPosition] + " -> " + listData[(
+//                            titleList as
+//                                    ArrayList<String>
+//                            )
+//                            [groupPosition]]!!.get(
+//                        childPosition
+//                    ),
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//                false
+//            }
         }
 
     }

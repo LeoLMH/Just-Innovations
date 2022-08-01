@@ -13,10 +13,10 @@ import java.util.HashMap
 class SpeechExpandableListAdapter internal constructor(
     private val context: SpeechFragment,
     private val titleList: List<String>,
-    private val dataList: HashMap<String, List<String>>
+    private val dataList: Presentation
 ) : BaseExpandableListAdapter() {
     override fun getChild(listPosition: Int, expandedListPosition: Int): Any {
-        return this.dataList[this.titleList[listPosition]]!![expandedListPosition]
+        return this.dataList
     }
     override fun getChildId(listPosition: Int, expandedListPosition: Int): Long {
         return expandedListPosition.toLong()
@@ -29,7 +29,9 @@ class SpeechExpandableListAdapter internal constructor(
         parent: ViewGroup
     ): View {
         var convertView = convertView
-        val expandedListText = getChild(listPosition, expandedListPosition) as String
+        val expandedObject = getChild(listPosition, expandedListPosition) as Presentation
+        val expandedListText = expandedObject.volume_eval
+        val expandedVolumeImage = expandedObject.volume_image
         if (convertView == null) {
             val layoutInflater =
                 this.context.activity?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -39,11 +41,11 @@ class SpeechExpandableListAdapter internal constructor(
         expandedListTextView.text = expandedListText
         val expandedListImageView = convertView!!.findViewById<ImageView>(R.id.speech_imageView)
         // set image resource
-        expandedListImageView.setImageResource(R.drawable.pre)
+        expandedListImageView.setImageURI(expandedObject.volume_image)
         return convertView
     }
     override fun getChildrenCount(listPosition: Int): Int {
-        return this.dataList[this.titleList[listPosition]]!!.size
+        return 1
     }
     override fun getGroup(listPosition: Int): Any {
         return this.titleList[listPosition]
