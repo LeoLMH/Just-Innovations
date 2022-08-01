@@ -47,7 +47,7 @@ class SpeechFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        expandableListView = binding.speechExpendableList
+//        expandableListView = binding.
 //        binding.volumeScore.text= pre.volume_score
 //        binding.speechScore.text = pre.speech_score
 //        binding.paceScore.text = pre.pace_score

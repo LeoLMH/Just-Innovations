@@ -52,82 +52,117 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/visual_title" />
 
-            <TableLayout
-                android:id="@+id/visual_assessment_table"
-                android:layout_width="312dp"
+            <View
+                android:id="@+id/divider10"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintTop_toBottomOf="@+id/score_circle2" />
+
+            <TextView
+                android:id="@+id/gesture_item"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:text="@string/gesture_item"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider10" />
+
+            <TextView
+                android:id="@+id/gesture_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="8999"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/gesture_item" />
+
+            <ImageView
+                android:id="@+id/gesture_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:adjustViewBounds="true"
+                android:maxWidth="400dp"
+                android:maxHeight="200dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/score_circle2">
+                app:layout_constraintTop_toBottomOf="@+id/gesture_item"
+                android:src="@drawable/sample_chart"/>
 
-                <TableRow
-                    android:id="@+id/gesture_row"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/gesture_item"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/gesture_item"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/gesture_score"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="22"
-                        android:textSize="24sp" />
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/facial_row"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/facial_item"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/facial_item"
-                        android:textSize="24sp" />
-
-                    <TextView
-                        android:id="@+id/facial_score"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="11"
-                        android:textSize="24sp" />
-
-                </TableRow>
-
-            </TableLayout>
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="500dp"
+            <TextView
+                android:id="@+id/gesture_desp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/visual_assessment_table"
-                tools:layout_editor_absoluteX="16dp">
+                android:text="@string/sample_desp"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/gesture_image" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+            <View
+                android:id="@+id/divider11"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintTop_toBottomOf="@+id/gesture_desp" />
 
-                    <ExpandableListView
-                        android:id="@+id/visual_expendableList"
-                        android:layout_width="match_parent"
-                        android:layout_height="400dp"
-                        android:divider="@android:color/background_light"
-                        android:dividerHeight="0.5dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0"
-                        tools:layout_editor_absoluteX="-36dp" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/facial_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/facial_item"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider11" />
 
-            </ScrollView>
+            <TextView
+                android:id="@+id/facial_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1234"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/facial_item" />
+
+            <ImageView
+                android:id="@+id/facial_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:adjustViewBounds="true"
+                android:maxWidth="400dp"
+                android:maxHeight="200dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/facial_item"
+                android:src="@drawable/sample_chart" />
+
+            <TextView
+                android:id="@+id/facial_desp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/sample_desp"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/facial_image" />
+
+            <View
+                android:id="@+id/divider12"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintTop_toBottomOf="@+id/facial_desp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

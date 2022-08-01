@@ -27,6 +27,7 @@
     <string name="speech_fragment">Speech Assessment</string>
     <string name="visual_fragment">Visual Assessment</string>
     <string name="suggestion_fragment">Presentation Suggestions</string>
+    <string name="sample_desp">This is a sample description.</string>
     <!-- Speech Fragment Items -->
     <string name="pace_item">Pace\t\t\t</string>
     <string name="volumn_item">Volume\t\t\t</string>

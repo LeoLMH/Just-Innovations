@@ -31,7 +31,7 @@ class VisualFragment : Fragment(R.layout.fragment_visual) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        expandableListView = binding.visualExpendableList
+//        expandableListView = binding.visualExpendableList
         //Log.e("visual_score", pre.visual_score!!)
         //Log.e("gesture_score", pre.gesture_score!!)
         //Log.e("facial_score", pre.facial_score!!)
