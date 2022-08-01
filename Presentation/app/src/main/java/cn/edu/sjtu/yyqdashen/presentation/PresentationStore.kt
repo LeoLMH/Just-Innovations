@@ -59,12 +59,16 @@ object PresentationStore {
             .post(mpFD.build())
             .build()
         Log.e("video_uri",pre.video_uri.toString())
+
+        // hardcode test for UI
         pre.volume_score="volume"
         pre.facial_score="facial"
         pre.visual_score="visual"
         pre.speech_score="speech"
         pre.pace_score="pace"
-        pre.gesture_score="gesutre"
+        pre.gesture_score="gesture"
+        pre.suggestion="suggestion_text"
+
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 Log.e("getscore", "Failed request")
@@ -100,6 +104,7 @@ object PresentationStore {
                 }
             }
         })
+
         while(stat != "failed" && stat != "done"){
         }
         return stat

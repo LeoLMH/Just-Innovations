@@ -8,9 +8,9 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
+import android.view.*
+import android.widget.EditText
+import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -18,11 +18,18 @@ import androidx.lifecycle.ViewModel
 import cn.edu.sjtu.yyqdashen.presentation.PresentationStore.getAudioScore
 import cn.edu.sjtu.yyqdashen.presentation.databinding.ActivityPresentationPostBinding
 import cn.edu.sjtu.yyqdashen.presentation.PresentationStore.pre
+import cn.edu.sjtu.yyqdashen.presentation.databinding.FragmentSuggestionBinding
 
 class PostPresentation : AppCompatActivity() {
     private lateinit var view: ActivityPresentationPostBinding
     private var enableSend = true
     private val viewState: PostViewState by viewModels()
+
+    // user inputs, will be sent to backend server
+    private var title_text : String? = null
+    private var username_text : String? = null
+    private var script_text : String? = null
+
     //TODO:: 4 use a variable in pre to store the video and script uploaded by user
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -135,7 +142,11 @@ class PostPresentation : AppCompatActivity() {
     }
 
     fun startLoad(view: View?) {
-
+        // send all presentation input to backend server
+        title_text = findViewById<EditText>(R.id.titleTextView).text.toString()
+        username_text = findViewById<EditText>(R.id.usernameTextView).text.toString()
+        script_text = findViewById<EditText>(R.id.scriptTextView).text.toString()
+        Log.e("username",username_text.toString())
         startActivity(Intent(this, LoadActivity::class.java))
 
     }

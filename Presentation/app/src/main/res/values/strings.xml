@@ -16,6 +16,8 @@
     <string name="quit">Quit</string>
     <string name="overall_score">YOUR_OVERALL_PRESENTATION_SCORE</string>
     <string name="new_title">Please enter the title of your presentation</string>
+    <string name="new_username">Please enter your name here.</string>
+    <string name="new_script">Please enter your presentation script here or upload your script file below.</string>
     <!-- Feedback -->
     <string name="speech">Speech</string>
     <string name="visual">Visual</string>
@@ -31,6 +33,8 @@
     <!-- Visual Fragment Items -->
     <string name="gesture_item">Gesture\t\t\t</string>
     <string name="facial_item">Facial\t\t\t</string>
+    <!-- Suggestion Fragment Items -->
+    <string name="suggestion_text">This is a sample suggestion.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="content_relevance">Content Relevance</string>
