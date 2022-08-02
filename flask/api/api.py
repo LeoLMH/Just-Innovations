@@ -62,8 +62,14 @@ def score():
     if not os.path.exists('./'+user_name) :
         os.mkdir('./'+user_name)
     rec.save(filename)
-    #visual_score,gesture_score,facial_score=get_facial_gesture_score(filename)    
+    #filename: file name of presentation recording .mp4
+    #requests.form['presentation_title']: string
+    #requests.form['presentation_topic']: string
+    #requests.form['script']: string
+    #requests.form['user_name]: string
 
+    #visual_score,gesture_score,facial_score=get_facial_gesture_score(filename)    
+    #mp4, presentation title, username
 
     '''
     fmt = rec.filename.split(".")[-1]
