@@ -13,7 +13,7 @@ import cn.edu.sjtu.yyqdashen.presentation.PresentationStore.pre
 //TODO:: 2 add expandable like speech fragment
 class VisualFragment : Fragment(R.layout.fragment_visual) {
     lateinit var binding: FragmentVisualBinding
-    private var expandableListView: ExpandableListView? = null
+//    private var expandableListView: ExpandableListView? = null
 
     private var overallVisualView: TextView? = null
     private var gestureImageView: ImageView? = null
@@ -47,42 +47,6 @@ class VisualFragment : Fragment(R.layout.fragment_visual) {
         // Change the image from backend here!!!
         gestureImageView!!.setImageResource(R.drawable.sample_chart);
         facialImageView!!.setImageResource(R.drawable.sample_chart)
-
-        if (expandableListView != null) {
-            val listData = ExpandableListData.data
-            titleList = ArrayList(listData.keys)
-            adapter = VisualExpandableListAdapter(this, titleList as ArrayList<String>, listData)
-            expandableListView!!.setAdapter(adapter)
-            expandableListView!!.setOnGroupExpandListener { groupPosition ->
-                Toast.makeText(
-                    context,
-                    (titleList as ArrayList<String>)[groupPosition] + " List Expanded.",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-            expandableListView!!.setOnGroupCollapseListener { groupPosition ->
-                Toast.makeText(
-                    context,
-                    (titleList as ArrayList<String>)[groupPosition] + " List Collapsed.",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-            expandableListView!!.setOnChildClickListener { _, _, groupPosition, childPosition, _ ->
-                Toast.makeText(
-                    context,
-                    "Clicked: " + (titleList as ArrayList<String>)[groupPosition] + " -> " + listData[(
-                            titleList as
-                                    ArrayList<String>
-                            )
-                            [groupPosition]]!!.get(
-                        childPosition
-                    ),
-                    Toast.LENGTH_SHORT
-                ).show()
-                false
-            }
-        }
-
     }
 
     override fun onCreateView(

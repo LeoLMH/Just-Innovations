@@ -64,41 +64,6 @@ class SpeechFragment() : Fragment() {
         volumeImageView!!.setImageResource(R.drawable.sample_chart)
         paceImageView!!.setImageResource(R.drawable.sample_chart)
 
-        if (expandableListView != null) {
-            val listData = data
-            titleList = ArrayList(listData.keys)
-            adapter = SpeechExpandableListAdapter(this, titleList as ArrayList<String>, listData)
-            expandableListView!!.setAdapter(adapter)
-            expandableListView!!.setOnGroupExpandListener { groupPosition ->
-                Toast.makeText(
-                    context,
-                    (titleList as ArrayList<String>)[groupPosition] + " List Expanded.",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-            expandableListView!!.setOnGroupCollapseListener { groupPosition ->
-                Toast.makeText(
-                    context,
-                    (titleList as ArrayList<String>)[groupPosition] + " List Collapsed.",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-            expandableListView!!.setOnChildClickListener { _, _, groupPosition, childPosition, _ ->
-                Toast.makeText(
-                    context,
-                    "Clicked: " + (titleList as ArrayList<String>)[groupPosition] + " -> " + listData[(
-                            titleList as
-                                    ArrayList<String>
-                            )
-                            [groupPosition]]!!.get(
-                        childPosition
-                    ),
-                    Toast.LENGTH_SHORT
-                ).show()
-                false
-            }
-        }
-
     }
 
     override fun onCreateView(
