@@ -30,6 +30,7 @@ class SpeechFragment() : Fragment() {
     private var volumeScoreView: TextView? = null
     private var volumeImageView: ImageView? = null
     private var paceScoreView: TextView? = null
+    private var paceImageView: ImageView? = null
     private var speechScoreView: TextView? = null
 
     private var adapter: ExpandableListAdapter? = null
@@ -54,10 +55,15 @@ class SpeechFragment() : Fragment() {
         volumeImageView=binding.volumeImage
         speechScoreView=binding.speechScore
         paceScoreView=binding.paceScore
+        paceImageView=binding.paceImage
         volumeScoreView!!.text = pre.volume_score
         speechScoreView!!.text=pre.speech_score
         paceScoreView!!.text=pre.pace_score
-        volumeImageView!!.setImageResource(R.drawable.pre);
+
+        // Change the image from backend here!!!
+        volumeImageView!!.setImageResource(R.drawable.sample_chart)
+        paceImageView!!.setImageResource(R.drawable.sample_chart)
+
         if (expandableListView != null) {
             val listData = data
             titleList = ArrayList(listData.keys)

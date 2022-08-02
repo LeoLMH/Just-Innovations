@@ -6,10 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ExpandableListAdapter
-import android.widget.ExpandableListView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import cn.edu.sjtu.yyqdashen.presentation.databinding.FragmentVisualBinding
 import cn.edu.sjtu.yyqdashen.presentation.PresentationStore.pre
 
@@ -19,8 +16,10 @@ class VisualFragment : Fragment(R.layout.fragment_visual) {
     private var expandableListView: ExpandableListView? = null
 
     private var overallVisualView: TextView? = null
+    private var gestureImageView: ImageView? = null
     private var gestureView: TextView? = null
     private var facialView: TextView? = null
+    private var facialImageView: ImageView? = null
 
     private var adapter: ExpandableListAdapter? = null
     private var titleList: List<String>? = null
@@ -37,11 +36,17 @@ class VisualFragment : Fragment(R.layout.fragment_visual) {
         //Log.e("facial_score", pre.facial_score!!)
         overallVisualView=binding.visualScore
         gestureView=binding.gestureScore
+        gestureImageView=binding.gestureImage
         facialView=binding.facialScore
+        facialImageView=binding.facialImage
 
         overallVisualView!!.text=pre.visual_score
         gestureView!!.text=pre.gesture_score
         facialView!!.text=pre.facial_score
+
+        // Change the image from backend here!!!
+        gestureImageView!!.setImageResource(R.drawable.sample_chart);
+        facialImageView!!.setImageResource(R.drawable.sample_chart)
 
         if (expandableListView != null) {
             val listData = ExpandableListData.data
