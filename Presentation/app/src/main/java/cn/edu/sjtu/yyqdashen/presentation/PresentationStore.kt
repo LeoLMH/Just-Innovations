@@ -23,7 +23,9 @@ import java.io.File
 import java.io.IOException
 import kotlin.reflect.full.declaredMemberProperties
 import android.database.Cursor
+import android.graphics.BitmapFactory
 import android.net.Uri
+import android.util.Base64
 import android.widget.ImageView
 import android.widget.Toast
 import cn.edu.sjtu.yyqdashen.presentation.toFile
@@ -101,6 +103,24 @@ object PresentationStore {
                     pre.overall_score=overall_scoreReceived
                     Log.e("volume score is",pre.volume_score!!)
                     stat = "done"
+                    val request2 = Request.Builder()
+                        //.method("POST",mpFD.build())
+                        .url(serverUrl+"image/")
+                        .post(mpFD.build())
+                        .build()
+                    client.newCall(request2).enqueue(object : Callback{
+                        override fun onFailure(call: Call, e: IOException) {
+                            Log.e("getscore", "Failed second request")
+                        }
+
+                        override fun onResponse(call: Call, response: Response) {
+                            Log.e("getscore", "Second request succeed")
+                            val result = response.body?.string() ?: ""
+                            var decode_result = Base64.decode(result,Base64.NO_WRAP)
+
+                            pre.image = BitmapFactory.decodeResource(resources, R.drawable.image)
+                        }
+                    })
                 }
             }
         })

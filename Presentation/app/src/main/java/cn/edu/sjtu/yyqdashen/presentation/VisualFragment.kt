@@ -45,8 +45,10 @@ class VisualFragment : Fragment(R.layout.fragment_visual) {
         facialView!!.text=pre.facial_score
 
         // Change the image from backend here!!!
-        gestureImageView!!.setImageResource(R.drawable.sample_chart);
-        facialImageView!!.setImageResource(R.drawable.sample_chart)
+        //gestureImageView!!.setImageResource(R.drawable.sample_chart);
+        gestureImageView!!.setImageBitmap(pre.image);
+        gestureImageView!!.setImageBitmap(pre.image);
+        //facialImageView!!.setImageResource(R.drawable.sample_chart)
     }
 
     override fun onCreateView(
