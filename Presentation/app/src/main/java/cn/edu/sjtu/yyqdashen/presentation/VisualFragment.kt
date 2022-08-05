@@ -20,6 +20,8 @@ class VisualFragment : Fragment(R.layout.fragment_visual) {
     private var gestureView: TextView? = null
     private var facialView: TextView? = null
     private var facialImageView: ImageView? = null
+    private var facialDesView: TextView? = null
+    private var gestureDesView: TextView? = null
 
     private var adapter: ExpandableListAdapter? = null
     private var titleList: List<String>? = null
@@ -39,16 +41,20 @@ class VisualFragment : Fragment(R.layout.fragment_visual) {
         gestureImageView=binding.gestureImage
         facialView=binding.facialScore
         facialImageView=binding.facialImage
+        facialDesView=binding.facialDesp
+        gestureDesView=binding.gestureDesp
+
 
         overallVisualView!!.text=pre.visual_score
         gestureView!!.text=pre.gesture_score
         facialView!!.text=pre.facial_score
+        facialDesView!!.text=pre.face_suggestion
+        gestureDesView!!.text=pre.gesture_suggestion
+
 
         // Change the image from backend here!!!
-        //gestureImageView!!.setImageResource(R.drawable.sample_chart);
-        gestureImageView!!.setImageBitmap(pre.image);
-        gestureImageView!!.setImageBitmap(pre.image);
-        //facialImageView!!.setImageResource(R.drawable.sample_chart)
+        gestureImageView!!.setImageResource(R.drawable.hand37);
+        facialImageView!!.setImageResource(R.drawable.face0);
     }
 
     override fun onCreateView(

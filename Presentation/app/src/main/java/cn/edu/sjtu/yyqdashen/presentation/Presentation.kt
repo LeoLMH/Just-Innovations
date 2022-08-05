@@ -16,6 +16,18 @@ class Presentation(
     var video_uri: Uri? = null,
     var script_uri: Uri? = null,
     var image: Bitmap? = null,
+    var gesture_suggestion: String? = null,
+    var face_suggestion: String? = null,
+    var volume_suggestion: String? = null,
+    var pace_suggestion: String? = null,
+    var flue_suggestion: String? = null,
+    var memo_suggestion: String? = null,
+    var memo_score: String? = null,
+    var flue_score: String? = null,
+    var topic: String? = null,
+    var user_name: String? = null,
+    var script: String? = null,
+    var pre_title: String? = null,
     //var file: file = null.
     //script:.....
     ){
