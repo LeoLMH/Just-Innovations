@@ -4,12 +4,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import cn.edu.sjtu.yyqdashen.presentation.databinding.ActivityFeedbackBinding
 
 class Feedback : AppCompatActivity() {
 
     lateinit var binding: ActivityFeedbackBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFeedbackBinding.inflate(layoutInflater)
@@ -17,7 +19,7 @@ class Feedback : AppCompatActivity() {
 
         val actionbar = supportActionBar
         //set actionbar title
-//        actionbar!!.title = "Feedback"
+        //actionbar!!.title = "Feedback"
         //set back button
         actionbar?.setDisplayHomeAsUpEnabled(true)
         actionbar?.setDisplayHomeAsUpEnabled(true)

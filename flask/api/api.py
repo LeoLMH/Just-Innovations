@@ -1,13 +1,14 @@
 from concurrent.futures import thread
 import json
 
-from grpc import server
-
-from audio import load_audio_file,get_volume,get_wordspersecond
-from vision import *
+#from grpc import server
+from audio.audio import load_audio_file,get_volume,get_wordspersecond, audio_to_text
+from content.content import speech_fluency_score, script_memorization_score, relevance_score
+#from vision import *
 import flask
 import time
 from flask import Flask, flash, request, redirect, url_for, jsonify
+import ffmpy
 
 import os
 
@@ -54,6 +55,8 @@ def audio_handler():
 
 @app.route('/score/', methods=['POST'])
 def score():
+
+    # save recording
     print("receive a request")
     rec = request.files['recording']
     if not os.path.exists('./download'):
@@ -73,24 +76,30 @@ def score():
     visual_score,gesture_score,facial_score=get_facial_gesture_score(filename) 
     #mp4, presentation title, username
 
-    '''
+    # change any media format to wav
     fmt = rec.filename.split(".")[-1]
     filename = './download/' + str(int(time.time())) + "." + fmt
     rec.save(filename)
-    source_file = filename
-    sink_file = './download/' + str(int(time.time())) + ".wav"
-    print(sink_file)
-    ff = ffmpy.FFmpeg(
-        inputs={source_file: None},
-        outputs={sink_file: None})
-    ff.run()
+    if fmt != "wav":
+        source_file = filename
+        sink_file = './download/' + str(int(time.time())) + ".wav"
+        ff = ffmpy.FFmpeg(
+            inputs={source_file: None},
+            outputs={sink_file: None})
+        ff.run()
+        filename = sink_file
 
-    print(request.form['script'])
-    data = load_audio_file(sink_file, reset = False)
+    # load wav audio, get script, get topic, get speech as text
+    data = load_audio_file(filename, reset=False)
+    script = request.form['script']
+    text_speech = audio_to_text(filename)
+    topic = request.form['topic']
+
+    print("@@@")
+    # get average volume, word_per_sec, text_speech
     average_volume = get_volume(data)
-    print(average_volume)
     words_per_sec = get_wordspersecond(data)
-    print(words_per_sec)'''
+    print(words_per_sec)
     face_suggestion=""
     gesture_suggestion=""
     
@@ -116,17 +125,24 @@ def score():
     overall_score = (speech_score+visual_score)/2
     suggestion = "The overall presentation good. This is a sample suggestion text"
     #save to local
+    user_name = request.form['user_name']
+    pre_title = request.form['presentation_title']
     record_name = './'+user_name+'/'+pre_title+'.json'
     d = {}
-    d["overall_score"] = str(overall_score),
-    d["speech_score"] = str(speech_score),
-    d["volume_score"] = str(volume_score),
-    d["pace_score"] = str(pace_score),
-    d["visual_score"] = str(visual_score),
-    d["gesture_score"] = str(gesture_score),
-    d["facial_score"] = str(facial_score),
-    d["suggestion"] = str(suggestion),
-    with open(record_name, 'w') as f:
+    d["overall_score"] = str(overall_score)
+    d["speech_score"] = str(speech_score)
+    d["volume_score"] = str(volume_score)
+    d["pace_score"] = str(pace_score)
+    d["visual_score"] = str(visual_score)
+    d["gesture_score"] = str(gesture_score)
+    d["facial_score"] = str(facial_score)
+    d["suggestion"] = str(suggestion)
+
+    cur_path = os.path.dirname(os.path.realpath(__file__))
+    save_path = os.path.join(cur_path, record_name)
+    if not os.path.exists(os.path.dirname(save_path)):
+        os.mkdir(os.path.dirname(save_path))
+    with open(save_path, 'w') as f:
         json.dump(d,f)
     return jsonify(
         overall_score = str(speech_score),
@@ -147,6 +163,16 @@ def score():
         memo_score = "memo_sug",
 
     )
+    # return jsonify(
+    #     overall_score = str(speech_score),
+    #     speech_score = str(speech_score),
+    #     volume_score = str(volume_score),
+    #     pace_score = str(pace_score),
+    #     visual_score = str(visual_score),
+    #     gesture_score = str(gesture_score),
+    #     facial_score = str(facial_score),
+    #     suggestion = str(suggestion),
+    # )
 
 @app.route('/recent/', methods=['GET'])
 def retrieve():
