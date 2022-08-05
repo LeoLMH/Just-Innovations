@@ -4,14 +4,41 @@
 
 The link to all 3rd-party tools, libraries, SDKs, APIs that may be used in our project are listed below:
 
-+ **Speech to Text API**: [Google Cloud Speech-to-Text](https://cloud.google.com/speech-to-text)
++ **Speech to Text API**: [Assembly AI Speech-to-Text](https://www.assemblyai.com/)
++ **Content Analysis**: [NLTK (Natural Language Toolkit)](https://www.nltk.org/)
 + **Audio Analysis**: [Librosa](https://librosa.org/doc/latest/index.html)
 + **Tone Analysis**: [torchaudio](https://pytorch.org/audio/stable/index.html)
 + **Pretrained Multi-task Cascaded Convolutional Networks**: [fer-pytorch](https://pypi.org/project/fer-pytorch/)
 + **Hand Motion Track**: [mediapipe](https://google.github.io/mediapipe/)
 + **Neural Network Framework**: [Pytorch](https://pytorch.org/)
 + **Computer Vision Toolkit**: [OpenCV](https://pypi.org/project/opencv-python/)
-+ ...
+
+### Setting-up Environment
+
+#### Backend Server
+The backend server relies on the following packages. Please use pip to install them.
++ `requests`
++ `flask`
++ `ffmpy`
+
+#### Audio API
+The audio API relies on the following packages. Please use pip to install them.
++ `numpy`
++ `librosa`
++ `pickle`
+
+#### Content Analysis API
+The content analysis API relies on the following package. Please use pip to install them.
++ `nltk`
+
+After installing `nltk`, please run `nltk.download('stopword')` in a python shell. Then, if running a linux machine, please run `flask/api/content/download.sh` directly to download pretrained word embedding files.
+
+#### Frontend APP
+If using a virtual device from android studio, please make sure your versions are: 
+
+### Running the APP
+For backend server, run `python flask/api/api.py`. Please ensure the port number is not occupied. Then before running the frontend, please change the server url accordingly. After changing the url, launch the APP and enjoy!
+
 
 ## Model and Engine
 
@@ -56,7 +83,7 @@ The feedback handler receives various outputs from voice handler and vision hand
 | `recording_path` |  String | Location of Rehearsal Recording Uploaded by User |
 | `recording`  | Media File | Rehearsal Recording  |
 
-**Google Cloud Speech-to-text Request Parameters**
+**Speech-to-text Request Parameters**
 
 | Key           |  Type   | Description                              |
 | ------------- |  ------ | ---------------------------------------- |
@@ -65,7 +92,7 @@ The feedback handler receives various outputs from voice handler and vision hand
 | `languageCode`  | String | Audio Language  |
 | `sampleRateHertz`  | String | Sampling rate of audio  |
 
-**Google Cloud Speech-to-text Responde Parameters**
+**Speech-to-text Respond Parameters**
 
 | Key           |  Type   | Description                              |
 | ------------- |  ------ | ---------------------------------------- |
@@ -73,7 +100,7 @@ The feedback handler receives various outputs from voice handler and vision hand
 | `confidence` |  Float | Confidence value (0-1)|
 | `word`  | dict | Start Time and Stop Time of Each Word in Transcript  |
 
-**Back-End Responde Parameters**
+**Back-End Respond Parameters**
 | Key           |  Type   | Description                              |
 | ------------- |  ------ | ---------------------------------------- |
 | `gesture_score`    |  float | 0-10 Score which evaluates users' gesture usages                         |
@@ -94,19 +121,10 @@ The contribution division will be added later.
 
 | Name         | Contribution                                                 |
 | ------------ | ------------------------------------------------------------ |
-| Chenshu Zhu  | Build presentation audio rating api. Build content-topic correlation rating api. Manage git repo. |
+| Chenshu Zhu  | Build presentation audio rating api. Build content-topic correlation rating api. Build speech-to-text API. Manage git repo. |
 | Minhao Li    | Build backend connection; Visual Assessment Algorithm.       |
 | Junqi Chen   | Collaborate with Yangqin Yan to work on frontend layout design and frontend activities implementation. The original repo of frontend is shown here: https://github.com/yangqin-yan/VE441_FrontEnd |
 | Yuqing Wang  | Collaborate with Minhao Li to work on backend. Allow backend to receive and process audio evaluation request. |
 | Yangqin Yan  | Design frontend layout and implement frontend activities.    |
 | Jiaming Kang |                                                              |
 
-## Dependencies
-
-### Audio API
-+ `numpy`
-+ `librosa`
-+ `pickle`
-
-### Content API
-+ `nltk`
