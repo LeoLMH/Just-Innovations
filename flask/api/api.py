@@ -1,10 +1,10 @@
 from concurrent.futures import thread
 import json
 
-#from grpc import server
+from grpc import server
 
-#from audio import load_audio_file,get_volume,get_wordspersecond
-#from vision import *
+from audio import load_audio_file,get_volume,get_wordspersecond
+from vision import *
 import flask
 import time
 from flask import Flask, flash, request, redirect, url_for, jsonify
@@ -70,7 +70,7 @@ def score():
     #requests.form['script']: string
     #requests.form['user_name]: string
 
-    #visual_score,gesture_score,facial_score=get_facial_gesture_score(filename)    
+    visual_score,gesture_score,facial_score=get_facial_gesture_score(filename) 
     #mp4, presentation title, username
 
     '''
@@ -91,7 +91,11 @@ def score():
     print(average_volume)
     words_per_sec = get_wordspersecond(data)
     print(words_per_sec)'''
-    visual_score,gesture_score,facial_score = 60,70,80
+    visual_suggestion=""
+    gesture_suggestion=""
+    
+    if(visual_score<6):
+
     speech_score = 80
     volume_score = 90
     pace_score = 90
