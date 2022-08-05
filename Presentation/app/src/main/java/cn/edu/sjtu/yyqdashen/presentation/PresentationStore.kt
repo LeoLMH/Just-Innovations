@@ -37,7 +37,7 @@ object PresentationStore {
 
     private lateinit var queue: RequestQueue
     //private const val serverUrl = "https://101.132.173.58/" /// need to be changed
-    //private const val serverUrl = "http://10.0.2.2:5000/"
+//    private const val serverUrl = "http://10.0.2.2:5000/"
     private const val serverUrl = "http://3.143.112.154:8000/"
     //private const val serverUrl = "http://127.0.0.1:5000/"
     //private const val serverUrl = "http://3.143.112.154:8000/"

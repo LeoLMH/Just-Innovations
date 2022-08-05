@@ -14,8 +14,9 @@ def load_embedding_file(embedding):
     """
     Load embedding into memory.
     """
-    if embedding is "glove":
+    if embedding == "glove":
         embed_path = os.path.join("embeddings", "glove.6B.50d.txt")
+        print(embed_path)
         if not os.path.exists(embed_path):
             print("ERROR! Embedding file not found. First run ./download.sh")
             exit(1)
