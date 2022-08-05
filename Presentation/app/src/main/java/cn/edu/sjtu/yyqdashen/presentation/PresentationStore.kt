@@ -24,19 +24,26 @@ import java.io.IOException
 import kotlin.reflect.full.declaredMemberProperties
 import android.database.Cursor
 import android.graphics.BitmapFactory
+import android.icu.util.TimeUnit
 import android.net.Uri
 import android.util.Base64
 import android.widget.ImageView
 import android.widget.Toast
 import cn.edu.sjtu.yyqdashen.presentation.toFile
+import javax.xml.datatype.DatatypeConstants.SECONDS
+
 object PresentationStore {
-    private val client = OkHttpClient()
+    val client = OkHttpClient.Builder()
+        .connectTimeout(60,java.util.concurrent.TimeUnit.SECONDS)
+        .writeTimeout(60, java.util.concurrent.TimeUnit.SECONDS)
+        .readTimeout(60, java.util.concurrent.TimeUnit.SECONDS)
+        .build()
     private val _pre = Presentation()
     val pre = Presentation()
     private val nFields = Presentation::class.declaredMemberProperties.size
-
     private lateinit var queue: RequestQueue
     //private const val serverUrl = "https://101.132.173.58/" /// need to be changed
+
 //    private const val serverUrl = "http://10.0.2.2:5000/"
     private const val serverUrl = "http://3.143.112.154:8000/"
     //private const val serverUrl = "http://127.0.0.1:5000/"
@@ -52,8 +59,8 @@ object PresentationStore {
         val mpFD = MultipartBody.Builder().setType(MultipartBody.FORM)
             .addFormDataPart("script", "this is a test script")
         Log.e("video_uri",pre.video_uri.toString())
-        pre.video_uri?.toFile(context)
-            ?.let { mpFD.addFormDataPart("recording","presentation", it.asRequestBody("video/mp4".toMediaType())) }
+        //pre.video_uri?.toFile(context)
+        //    ?.let { mpFD.addFormDataPart("recording","presentation", it.asRequestBody("video/mp4".toMediaType())) }
 
         pre.topic?.let { mpFD.addFormDataPart("topic", it) }
         pre.user_name?.let { mpFD.addFormDataPart("user_name", it) }
