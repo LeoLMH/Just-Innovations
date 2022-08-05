@@ -153,7 +153,7 @@ def score():
         gesture_score = str(gesture_score),
         facial_score = str(facial_score),
         suggestion = str(suggestion),
-        gesture_seg = gesture_suggestion
+        gesture_seg = gesture_suggestion,
         face_sug = face_suggestion,
         vol_sug = "vol_sug",
         pace_sug = "pace_sug",
