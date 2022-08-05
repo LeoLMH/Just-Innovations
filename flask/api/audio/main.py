@@ -11,4 +11,4 @@ print("The audio's average speed (words oer second) is")
 print(audio.get_wordspersecond(data))
 
 print("The audio's transcribed text is")
-print(audio.audio_to_text(test_audio))
+# print(audio.audio_to_text(test_audio))

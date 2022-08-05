@@ -1,24 +1,29 @@
 package cn.edu.sjtu.yyqdashen.presentation
 
+import android.net.Uri
+import android.os.Environment
+import java.io.File
 import java.util.*
 internal object ExpandableListData {
-    val data: HashMap<String, List<String>>
+    val data: Presentation
         get() {
-            val expandableListDetail =
-                HashMap<String, List<String>>()
-            val myFavCricketPlayers: MutableList<String> =
-                ArrayList()
-            myFavCricketPlayers.add("MS.Dhoni")
+            val expandableListDetail = Presentation()
 
-            val myFavFootballPlayers: MutableList<String> = ArrayList()
-            myFavFootballPlayers.add("Cristiano Ronaldo ahdf")
+            expandableListDetail.facial_score = 100.toString()
+            expandableListDetail.gesture_score = 100.toString()
+            expandableListDetail.pace_score = 100.toString()
+            expandableListDetail.script_uri = null
+            expandableListDetail.speech_score = 100.toString()
+            expandableListDetail.suggestion = "no suggestion"
+            expandableListDetail.video_uri = null
+            expandableListDetail.volume_eval = "sample eval"
+            expandableListDetail.visual_score = 100.toString()
+            expandableListDetail.overall_score = 100.toString()
+            expandableListDetail.volume_score = 100.toString()
+            // set the image to display in the expandable listS
+            expandableListDetail.volume_image = Uri.parse("http://stackoverflow.com")
 
-            val myFavTennisPlayers: MutableList<String> = ArrayList()
-            myFavTennisPlayers.add("Roger Federer ah dflash dfklhasd lkf halkdshf laewiof ghoiaewhf2 oy 389g2k3rg3kj2g rjkuhg4kjg324 kj23g 4kj2g3 4jkg 2k34g k2")
 
-            expandableListDetail["Pace"] = myFavCricketPlayers
-            expandableListDetail["Volume"] = myFavFootballPlayers
-            expandableListDetail["Tone"] = myFavTennisPlayers
             return expandableListDetail
         }
 

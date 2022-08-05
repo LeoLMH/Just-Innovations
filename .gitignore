@@ -5,3 +5,5 @@ __pycache__
 flask/api/download
 flask/api/.cache
 mytest.py
+.cache
+download

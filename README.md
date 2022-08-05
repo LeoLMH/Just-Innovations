@@ -4,14 +4,41 @@
 
 The link to all 3rd-party tools, libraries, SDKs, APIs that may be used in our project are listed below:
 
-+ **Speech to Text API**: [Google Cloud Speech-to-Text](https://cloud.google.com/speech-to-text)
++ **Speech to Text API**: [Assembly AI Speech-to-Text](https://www.assemblyai.com/)
++ **Content Analysis**: [NLTK (Natural Language Toolkit)](https://www.nltk.org/)
 + **Audio Analysis**: [Librosa](https://librosa.org/doc/latest/index.html)
 + **Tone Analysis**: [torchaudio](https://pytorch.org/audio/stable/index.html)
 + **Pretrained Multi-task Cascaded Convolutional Networks**: [fer-pytorch](https://pypi.org/project/fer-pytorch/)
 + **Hand Motion Track**: [mediapipe](https://google.github.io/mediapipe/)
 + **Neural Network Framework**: [Pytorch](https://pytorch.org/)
 + **Computer Vision Toolkit**: [OpenCV](https://pypi.org/project/opencv-python/)
-+ ...
+
+### Setting-up Environment
+
+#### Backend Server
+The backend server relies on the following packages. Please use pip to install them.
++ `requests`
++ `flask`
++ `ffmpy`
+
+#### Audio API
+The audio API relies on the following packages. Please use pip to install them.
++ `numpy`
++ `librosa`
++ `pickle`
+
+#### Content Analysis API
+The content analysis API relies on the following package. Please use pip to install them.
++ `nltk`
+
+After installing `nltk`, please run `nltk.download('stopword')` in a python shell. Then, if running a linux machine, please run `flask/api/content/download.sh` directly to download pretrained word embedding files.
+
+#### Frontend APP
+If using a virtual device from android studio, please make sure your versions are: 
+
+### Running the APP
+For backend server, run `python flask/api/api.py`. Please ensure the port number is not occupied. Then before running the frontend, please change the server url accordingly. After changing the url, launch the APP and enjoy!
+
 
 ## Model and Engine
 
@@ -51,12 +78,12 @@ The feedback handler receives various outputs from voice handler and vision hand
 | Key           |  Type   | Description                              |
 | ------------- |  ------ | ---------------------------------------- |
 | `username`    |  String | Current user                             |
-| `topic`    |  String | Presentation Topic                           |
-| `script`    |  String | Presentation script                         |
-| `recording_path` |  String | Location of Rehearsal Recording Uploaded by User |
+| `title` |  String | Presentation Title                       |
+| `topic`     | String     | Presentation Topic  |
+| `script`    | String     | Presentation Script |
 | `recording`  | Media File | Rehearsal Recording  |
 
-**Google Cloud Speech-to-text Request Parameters**
+**Speech-to-text Request Parameters**
 
 | Key           |  Type   | Description                              |
 | ------------- |  ------ | ---------------------------------------- |
@@ -65,7 +92,7 @@ The feedback handler receives various outputs from voice handler and vision hand
 | `languageCode`  | String | Audio Language  |
 | `sampleRateHertz`  | String | Sampling rate of audio  |
 
-**Google Cloud Speech-to-text Responde Parameters**
+**Speech-to-text Respond Parameters**
 
 | Key           |  Type   | Description                              |
 | ------------- |  ------ | ---------------------------------------- |
@@ -73,16 +100,25 @@ The feedback handler receives various outputs from voice handler and vision hand
 | `confidence` |  Float | Confidence value (0-1)|
 | `word`  | dict | Start Time and Stop Time of Each Word in Transcript  |
 
-**Back-End Responde Parameters**
+**Back-End Respond Parameters**
 | Key           |  Type   | Description                              |
 | ------------- |  ------ | ---------------------------------------- |
-| `gesture_score`    |  float | 0-10 Score which evaluates users' gesture usages                         |
-| `facial_score`    |  float | 0-10 Score which evaluates users' facial expressions                        |
-| `tone_score`    |  float | 0-10 Score which evaluates users' tone                       |
-| `stopword_count`    |  int | Total Stop Words Counts of Recording                         |
-| `volume_score` |  Float | 0-10 Score which evaluates users' speaking volume |
-| `recite_score` |  Float | 0-10 Score which evaluates users' articulation and recitation of scripts |
-| `feedback`  | String | Summary of various scores and includes a short instruction on how to improve the overall presentations.  |
+| `overall_score` | Float  | Score from 0 to 100 which evaluates users' general presentation performance |
+| `speech_score`  | String | An assessment from lists [excellent, good, plain, needs work] which evaluates users' overall speech performance |
+| `volume_score`  | Float  | Score from 0 to 10 which evaluates users' speaking volume    |
+| `pace_score`    | Float  | Score from 0 to 100 which evaluates users' presentation speed |
+| `visual_score`  | Float  | Score from 0 to 100 which evaluates users' overall visual performance |
+| `gesture_score` | Float  | Score from 0 to 10 which evaluates users' gesture usages     |
+| `facial_score`  | Float  | Score from 0 to 10 which evaluates users' facial expressions |
+| `flue_score`    | String | Score from 0 to 10 which evaluates the users' speech fluency |
+| memo_score      | Float  | Score from 0 to 100 which evaluates users' level of memorization of the script |
+| `suggestion`    | String | General suggestion generated from backend based on users' presentation materials |
+| `gesture_sug`   | String | Suggestion on presenter's gesture                            |
+| `face_sug`      | String | Suggestion on presenter's facial expression                  |
+| `vol_sug`       | String | Suggestion on presenter's volume                             |
+| `pace_sug`      | String | Suggestion on presenter's speaking speed                     |
+| `flue_sug`      | String | Suggestion on presenter's speaking fluency                   |
+| `memo_sug`      | String | Suggestion on presenter's level of memorization of the script. |
 
 ## View UI/UX
 
@@ -90,23 +126,17 @@ This section is left blank for now.
 
 ## Team Roster
 
-The contribution division will be added later.
+The contribution division is detailed in the table below.
 
 | Name         | Contribution                                                 |
 | ------------ | ------------------------------------------------------------ |
-| Chenshu Zhu  | Build presentation audio rating api. Build content-topic correlation rating api. Manage git repo. |
+| Chenshu Zhu  | Build presentation audio rating api. Build content-topic correlation rating api. Build speech-to-text API. Manage git repo. |
 | Minhao Li    | Build backend connection; Visual Assessment Algorithm.       |
 | Junqi Chen   | Collaborate with Yangqin Yan to work on frontend layout design and frontend activities implementation. The original repo of frontend is shown here: https://github.com/yangqin-yan/VE441_FrontEnd |
 | Yuqing Wang  | Collaborate with Minhao Li to work on backend. Allow backend to receive and process audio evaluation request. |
 | Yangqin Yan  | Design frontend layout and implement frontend activities.    |
 | Jiaming Kang |                                                              |
 
-## Dependencies
+### Challenges in APP Development 
 
-### Audio API
-+ `numpy`
-+ `librosa`
-+ `pickle`
-
-### Content API
-+ `nltk`
+Throughout the APP development, we met numerous challenges. Yet, all of our challenges can be summarized into "a difficulty in time estimation and project planning". In the frontend part, our unfamiliarity with `kotlin` syntax resulted in time debugging codes involving the okhttp and other 3rd party APIs. We had ZOOM meetings to pool our efforts in debugging, which greatly accelerated the debugging process. In the backend development part, our greatest obstacle was the insufficient computing power provided by the aws EC2 server. Since our project involves machine learning models, the memory on the server soon proved to be not enough. Therefore, we had to develop concurrently on our local laptops and on the cloud, configuring every environment twice to figure out whether any bug was due to memory deficiency or syntatic errors. This helped us learn the importance of documenting our environment configuration. While developing the features, we spent more time than expected reearching existing APIs and open source libraries. Whenever we choose to use an opensource library with state-of-the-art performance, it would involve environment configuration. And if using an API, we need to spend time reading the documentation. Comparing APIs and open source libraries therefore became time-consuming. In retrospect, if we had assigned one member to test each API or library concurrently, we would have saved time. Another lesson learned. While developing ML features, such as hand-gesture and facial expression recognition, we spent much time again preparing environments and running experiments. However, this time seems unavoidable. If anything, we could have done this part as early as possible. In summary, due to our lack of experience in team-coding, we wasted some time in almost every stage of our development. However, after each development process, we learned something that can help us acomplish these tasks faster in the future. We even had the chane of puttong some skills to practise this time. 
