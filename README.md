@@ -51,9 +51,9 @@ The feedback handler receives various outputs from voice handler and vision hand
 | Key           |  Type   | Description                              |
 | ------------- |  ------ | ---------------------------------------- |
 | `username`    |  String | Current user                             |
-| `topic`    |  String | Presentation Topic                           |
-| `script`    |  String | Presentation script                         |
-| `recording_path` |  String | Location of Rehearsal Recording Uploaded by User |
+| `title` |  String | Presentation Title                       |
+| `topic`     | String     | Presentation Topic  |
+| `script`    | String     | Presentation Script |
 | `recording`  | Media File | Rehearsal Recording  |
 
 **Google Cloud Speech-to-text Request Parameters**
@@ -76,13 +76,22 @@ The feedback handler receives various outputs from voice handler and vision hand
 **Back-End Responde Parameters**
 | Key           |  Type   | Description                              |
 | ------------- |  ------ | ---------------------------------------- |
-| `gesture_score`    |  float | 0-10 Score which evaluates users' gesture usages                         |
-| `facial_score`    |  float | 0-10 Score which evaluates users' facial expressions                        |
-| `tone_score`    |  float | 0-10 Score which evaluates users' tone                       |
-| `stopword_count`    |  int | Total Stop Words Counts of Recording                         |
-| `volume_score` |  Float | 0-10 Score which evaluates users' speaking volume |
-| `recite_score` |  Float | 0-10 Score which evaluates users' articulation and recitation of scripts |
-| `feedback`  | String | Summary of various scores and includes a short instruction on how to improve the overall presentations.  |
+| `overall_score` | Float  | Score from 0 to 100 which evaluates users' general presentation performance |
+| `speech_score`  | String | An assessment from lists [excellent, good, plain, needs work] which evaluates users' overall speech performance |
+| `volume_score`  | Float  | Score from 0 to 10 which evaluates users' speaking volume    |
+| `pace_score`    | Float  | Score from 0 to 100 which evaluates users' presentation speed |
+| `visual_score`  | Float  | Score from 0 to 100 which evaluates users' overall visual performance |
+| `gesture_score` | Float  | Score from 0 to 10 which evaluates users' gesture usages     |
+| `facial_score`  | Float  | Score from 0 to 10 which evaluates users' facial expressions |
+| `flue_score`    | String | Score from 0 to 10 which evaluates the users' speech fluency |
+| memo_score      | Float  | Score from 0 to 100 which evaluates users' level of memorization of the script |
+| `suggestion`    | String | General suggestion generated from backend based on users' presentation materials |
+| `gesture_sug`   | String | Suggestion on presenter's gesture                            |
+| `face_sug`      | String | Suggestion on presenter's facial expression                  |
+| `vol_sug`       | String | Suggestion on presenter's volume                             |
+| `pace_sug`      | String | Suggestion on presenter's speaking speed                     |
+| `flue_sug`      | String | Suggestion on presenter's speaking fluency                   |
+| `memo_sug`      | String | Suggestion on presenter's level of memorization of the script. |
 
 ## View UI/UX
 
