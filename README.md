@@ -34,10 +34,29 @@ The content analysis API relies on the following package. Please use pip to inst
 After installing `nltk`, please run `nltk.download('stopword')` in a python shell. Then, if running a linux machine, please run `flask/api/content/download.sh` directly to download pretrained word embedding files.
 
 #### Frontend APP
-If using a virtual device from android studio, please make sure your versions are: 
+If using a virtual device from android studio, please make sure you use the following configurations:
+
++ **Phone**:
+
+  | Name    | Play Store | Size  | Resolution  | Density |
+  | ------- | ---------- | ----- | ----------- | ------- |
+  | Pixel 4 | enable     | 5.7'' | 1080 * 2280 | 440dpi  |
+
++ **System Image**:
+
+  | Release Name | API Level | ABI    | Target                     |
+  | ------------ | --------- | ------ | -------------------------- |
+  | S            | 31        | x86_64 | Android 12.0 (Google Play) |
+
++ **Startup orientation**: Portrait
 
 ### Running the APP
-For backend server, run `python flask/api/api.py`. Please ensure the port number is not occupied. Then before running the frontend, please change the server url accordingly. After changing the url, launch the APP and enjoy!
+For backend server, run `python flask/api/api.py`. Please ensure the port number is not occupied. Then before running the frontend, please change the server url accordingly. You should change your url in the following files under the directory `Presentation\app\src\main\java\cn\edu\sjtu\yyqdashen\presentation\`:
+
++ `MainActivity.kt`
++ `PresentationStore.kt`
+
+After changing the url, launch the APP and enjoy!
 
 
 ## Model and Engine
@@ -101,28 +120,84 @@ The feedback handler receives various outputs from voice handler and vision hand
 | `word`  | dict | Start Time and Stop Time of Each Word in Transcript  |
 
 **Back-End Respond Parameters**
-| Key           |  Type   | Description                              |
-| ------------- |  ------ | ---------------------------------------- |
-| `overall_score` | Float  | Score from 0 to 100 which evaluates users' general presentation performance |
-| `speech_score`  | String | An assessment from lists [excellent, good, plain, needs work] which evaluates users' overall speech performance |
-| `volume_score`  | Float  | Score from 0 to 10 which evaluates users' speaking volume    |
-| `pace_score`    | Float  | Score from 0 to 100 which evaluates users' presentation speed |
-| `visual_score`  | Float  | Score from 0 to 100 which evaluates users' overall visual performance |
-| `gesture_score` | Float  | Score from 0 to 10 which evaluates users' gesture usages     |
-| `facial_score`  | Float  | Score from 0 to 10 which evaluates users' facial expressions |
-| `flue_score`    | String | Score from 0 to 10 which evaluates the users' speech fluency |
-| memo_score      | Float  | Score from 0 to 100 which evaluates users' level of memorization of the script |
-| `suggestion`    | String | General suggestion generated from backend based on users' presentation materials |
-| `gesture_sug`   | String | Suggestion on presenter's gesture                            |
-| `face_sug`      | String | Suggestion on presenter's facial expression                  |
-| `vol_sug`       | String | Suggestion on presenter's volume                             |
-| `pace_sug`      | String | Suggestion on presenter's speaking speed                     |
-| `flue_sug`      | String | Suggestion on presenter's speaking fluency                   |
-| `memo_sug`      | String | Suggestion on presenter's level of memorization of the script. |
+
++ **Score**
+
+  | Key             | Type   | Description                                                  |
+  | --------------- | ------ | ------------------------------------------------------------ |
+  | `overall_score` | Float  | Score from 0 to 100 which evaluates users' general presentation performance |
+  | `speech_score`  | String | An assessment from lists [excellent, good, plain, needs work] which evaluates users' overall speech performance |
+  | `volume_score`  | Float  | Score from 0 to 10 which evaluates users' speaking volume    |
+  | `pace_score`    | Float  | Score from 0 to 100 which evaluates users' presentation speed |
+  | `visual_score`  | Float  | Score from 0 to 100 which evaluates users' overall visual performance |
+  | `gesture_score` | Float  | Score from 0 to 10 which evaluates users' gesture usages     |
+  | `facial_score`  | Float  | Score from 0 to 10 which evaluates users' facial expressions |
+  | `flue_score`    | String | Score from 0 to 10 which evaluates the users' speech fluency |
+  | memo_score      | Float  | Score from 0 to 100 which evaluates users' level of memorization of the script |
+
++ **Suggestions**
+
+  | `suggestion`  | String | General suggestion generated from backend based on users' presentation materials |
+  | ------------- | ------ | ------------------------------------------------------------ |
+  | `gesture_sug` | String | Suggestion on presenter's gesture                            |
+  | `face_sug`    | String | Suggestion on presenter's facial expression                  |
+  | `vol_sug`     | String | Suggestion on presenter's volume                             |
+  | `pace_sug`    | String | Suggestion on presenter's speaking speed                     |
+  | `flue_sug`    | String | Suggestion on presenter's speaking fluency                   |
+  | `memo_sug`    | String | Suggestion on presenter's level of memorization of the script. |
 
 ## View UI/UX
 
-This section is left blank for now.
+### UI Flow Design
+
+To ensure a great interactive experience for our app users, we divide our user-app interaction into three stages: 
+
++ Material uploading stage
++ Feedback displaying stage
++ Evaluating stage
+
+![UI_Flow](assets/UI_Flow.png)
+
+As the graph shown below, for the pages on the right side, users are guided to perform uploading operations. For the pages on the left side, users can check all the feedback results freely. These two parts are separated by an evaluating page, in which app is waiting for backend server to process and send back results.
+
+### UIUX Mockup
+
+We use [Figma](https://www.figma.com/) to visualize the UI flow for demonstration. Our UI/UX mockup prototype is linking [here](https://www.figma.com/proto/r0exDEl6ROVZvL7jgnLzoo/UI%2FUX-Workflow?node-id=8%3A2&scaling=scale-down&page-id=0%3A1&starting-point-node-id=8%3A2).
+
+### Usability Test
+
+#### Usability Test configuration
+
+The usability test aims at collecting users' experience and feedbacks on our app. We conducted 6 interviews in total, in which the interviewees tried to use our mockup app to accomplish the pre-designed tasks. 
+
+The predesigned tasks are listed below:
+
+1. Input a script and presentation recording.
+2. Fetched detailed feedbacks.
+3. Check the detailed audio, gesture feedbacks and general suggestions.
+4. Open the recent feedbacks.
+
+To ensure the fairness of the usability testing, all the interviewees are guaranteed to be using our app for the first time. And all the tasks are accomplished by the interviewees themselves without direct guidance given by the interviewer. The usability testing should reflect the users' experience when using our app in the real situation.
+
+#### Findings
+
+The following table is the analysis on how well our pre-designed tasks were accomplished:
+
+![usability_test_result](assets/usability_test_result.png)
+
+From the table above, we can see that most of our tasks are successfully accomplished. Task 3, which asking the user to check the feedback pages, has the lowest success rate. It indicates that the design of our feedback pages should be reorganized to be more user-friendly and easy-to-use.
+
+### Final Design
+
+After collecting and analyzing the results from the usability test, we made some optimization on our UI design to make it more user-friendly. Here is the summary on our changes in the final design:
+
++ Highlight the navigation bar in the feedback page to make it easier to catch users' attention.
+
++ Adjust the font size and re-organize the page layout to ensure a better user experience.
++ Change some misleading text to make it more clear, like change between "Back" to "Main Page" in the feedback pages.
++ Add the page title in each page. So the users know where they are.
+
+
 
 ## Team Roster
 
@@ -132,7 +207,7 @@ The contribution division will be added later.
 | ------------ | ------------------------------------------------------------ |
 | Chenshu Zhu  | Build presentation audio rating api. Build content-topic correlation rating api. Build speech-to-text API. Manage git repo. |
 | Minhao Li    | Build backend connection; Visual Assessment Algorithm.       |
-| Junqi Chen   | Collaborate with Yangqin Yan to work on frontend layout design and frontend activities implementation. The original repo of frontend is shown here: https://github.com/yangqin-yan/VE441_FrontEnd |
+| Junqi Chen   | Collaborate with Yangqin Yan to work on frontend layout design and frontend activities implementation. Collaborate with Minhao Li to work on connection between frontend and backend. |
 | Yuqing Wang  | Collaborate with Minhao Li to work on backend. Allow backend to receive and process audio evaluation request. |
 | Yangqin Yan  | Design frontend layout and implement frontend activities.    |
 | Jiaming Kang |                                                              |
