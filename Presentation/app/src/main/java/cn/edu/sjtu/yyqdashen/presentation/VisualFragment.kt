@@ -6,21 +6,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ExpandableListAdapter
-import android.widget.ExpandableListView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import cn.edu.sjtu.yyqdashen.presentation.databinding.FragmentVisualBinding
 import cn.edu.sjtu.yyqdashen.presentation.PresentationStore.pre
 
 //TODO:: 2 add expandable like speech fragment
 class VisualFragment : Fragment(R.layout.fragment_visual) {
     lateinit var binding: FragmentVisualBinding
-    private var expandableListView: ExpandableListView? = null
+//    private var expandableListView: ExpandableListView? = null
 
     private var overallVisualView: TextView? = null
+    private var gestureImageView: ImageView? = null
     private var gestureView: TextView? = null
     private var facialView: TextView? = null
+    private var facialImageView: ImageView? = null
 
     private var adapter: ExpandableListAdapter? = null
     private var titleList: List<String>? = null
@@ -31,54 +30,25 @@ class VisualFragment : Fragment(R.layout.fragment_visual) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        expandableListView = binding.visualExpendableList
+//        expandableListView = binding.visualExpendableList
         //Log.e("visual_score", pre.visual_score!!)
         //Log.e("gesture_score", pre.gesture_score!!)
         //Log.e("facial_score", pre.facial_score!!)
         overallVisualView=binding.visualScore
         gestureView=binding.gestureScore
+        gestureImageView=binding.gestureImage
         facialView=binding.facialScore
+        facialImageView=binding.facialImage
 
         overallVisualView!!.text=pre.visual_score
         gestureView!!.text=pre.gesture_score
         facialView!!.text=pre.facial_score
 
-//        if (expandableListView != null) {
-//            val listData = ExpandableListData.data
-//            titleList = ArrayList()
-//
-//            adapter = VisualExpandableListAdapter(this, titleList as ArrayList<String>, listData)
-//            expandableListView!!.setAdapter(adapter)
-//            expandableListView!!.setOnGroupExpandListener { groupPosition ->
-//                Toast.makeText(
-//                    context,
-//                    (titleList as ArrayList<String>)[groupPosition] + " List Expanded.",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//            }
-//            expandableListView!!.setOnGroupCollapseListener { groupPosition ->
-//                Toast.makeText(
-//                    context,
-//                    (titleList as ArrayList<String>)[groupPosition] + " List Collapsed.",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//            }
-//            expandableListView!!.setOnChildClickListener { _, _, groupPosition, childPosition, _ ->
-//                Toast.makeText(
-//                    context,
-//                    "Clicked: " + (titleList as ArrayList<String>)[groupPosition] + " -> " + listData[(
-//                            titleList as
-//                                    ArrayList<String>
-//                            )
-//                            [groupPosition]]!!.get(
-//                        childPosition
-//                    ),
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//                false
-//            }
-//        }
-
+        // Change the image from backend here!!!
+        //gestureImageView!!.setImageResource(R.drawable.sample_chart);
+        gestureImageView!!.setImageBitmap(pre.image);
+        gestureImageView!!.setImageBitmap(pre.image);
+        //facialImageView!!.setImageResource(R.drawable.sample_chart)
     }
 
     override fun onCreateView(

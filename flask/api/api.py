@@ -1,10 +1,10 @@
 from concurrent.futures import thread
 import json
 
-from grpc import server
+#from grpc import server
 
-from audio import load_audio_file,get_volume,get_wordspersecond
-from vision import *
+#from audio import load_audio_file,get_volume,get_wordspersecond
+#from vision import *
 import flask
 import time
 from flask import Flask, flash, request, redirect, url_for, jsonify
@@ -56,7 +56,9 @@ def audio_handler():
 def score():
     print("receive a request")
     rec = request.files['recording']
-    filename = './download/' + str(int(time.time())) + "." + '.mp4'
+    if not os.path.exists('./download'):
+        os.mkdir('./download')
+    filename = './download/' + str(int(time.time())) + '.mp4'
     user_name = "user1"
     pre_title = "pre1"
     if not os.path.exists('./'+user_name) :
@@ -131,5 +133,14 @@ def retrieve():
             recent_list.append(j)
     return jsonify(recent_list)
 
-app.run()
+@app.route('/image/', methods=['GET'])
+def send_image():
+    user_name = "user1"
+    file_name = './user1/test.jpg'
+    flask.send_file(file_name,mimetype='image/jpg')
+    time.sleep(1)
+    return 
+
+#app.run()
+app.run(host='0.0.0.0',port='8000')
 #server(app,host='12.34.56.78',port=8080,thread=1)
