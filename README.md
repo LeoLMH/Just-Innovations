@@ -127,12 +127,12 @@ The feedback handler receives various outputs from voice handler and vision hand
   | --------------- | ------ | ------------------------------------------------------------ |
   | `overall_score` | Float  | Score from 0 to 100 which evaluates users' general presentation performance |
   | `speech_score`  | String | An assessment from lists [excellent, good, plain, needs work] which evaluates users' overall speech performance |
-  | `volume_score`  | Float  | Score from 0 to 10 which evaluates users' speaking volume    |
+  | `volume_score`  | Float  | Score from 0 to 100 which evaluates users' speaking volume    |
   | `pace_score`    | Float  | Score from 0 to 100 which evaluates users' presentation speed |
   | `visual_score`  | Float  | Score from 0 to 100 which evaluates users' overall visual performance |
-  | `gesture_score` | Float  | Score from 0 to 10 which evaluates users' gesture usages     |
-  | `facial_score`  | Float  | Score from 0 to 10 which evaluates users' facial expressions |
-  | `flue_score`    | String | Score from 0 to 10 which evaluates the users' speech fluency |
+  | `gesture_score` | Float  | Score from 0 to 100 which evaluates users' gesture usages     |
+  | `facial_score`  | Float  | Score from 0 to 100 which evaluates users' facial expressions |
+  | `flue_score`    | String | An assessment from lists [excellent, good, plain, needs work] which evaluates the users' speech fluency |
   | memo_score      | Float  | Score from 0 to 100 which evaluates users' level of memorization of the script |
 
 + **Suggestions**
