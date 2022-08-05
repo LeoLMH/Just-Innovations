@@ -49,10 +49,11 @@ class MainActivity : AppCompatActivity() {
             .url(serverUrl +"recent/")
             .post(mpFD.build())
             .build()
-
+        var stat = "empty"
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 Log.e("recent", "Failed request")
+                stat="fail"
             }
 
             override fun onResponse(call: Call, response: Response) {
@@ -78,10 +79,15 @@ class MainActivity : AppCompatActivity() {
                     pre.volume_score = volume_scoreReceived
                     pre.suggestion=suggestion
                     pre.overall_score=overall_scoreReceived
+                    stat="success"
                 }
             }
         })
-        startActivity(Intent(this, RecentFeedback::class.java))
+
+        while(stat=="empty"){
+
+        }
+        startActivity(Intent(this, Feedback::class.java))
 
     }
 }
