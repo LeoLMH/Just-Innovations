@@ -91,10 +91,24 @@ def score():
     print(average_volume)
     words_per_sec = get_wordspersecond(data)
     print(words_per_sec)'''
-    visual_suggestion=""
+    face_suggestion=""
     gesture_suggestion=""
     
-    if(visual_score<6):
+    if(facial_score<6):
+        face_suggestion="Your facial expression is too neutral. Try to be more energetic and use your passion to ignite the audience."
+    elif(facial_score<7):
+        face_suggestion="Sometimes you need to change your facial expression more to attract the audience."
+    elif(facial_score<8):
+        face_suggestion="Overall speaking your facial expressions are good. But there is still some improvement. You can turn your face around or try to smile during the presentation."
+    else:
+        face_suggestion="You did a great job. Try to keep this feeling in the real presentation!"
+
+    if(gesture_score<6):
+        gesture_suggestion="Your hands were not moving. Try to use your body language to get the audience involved"
+    elif(gesture_score<7):
+        gesture_suggestion="You had several attempts on using gestures. Try to use more!"
+    else:
+        gesture_suggestion="Your body language is good. Try to keep this feeling in the real presentation!"
 
     speech_score = 80
     volume_score = 90
@@ -123,6 +137,15 @@ def score():
         gesture_score = str(gesture_score),
         facial_score = str(facial_score),
         suggestion = str(suggestion),
+        gesture_seg = gesture_suggestion
+        face_sug = face_suggestion,
+        vol_sug = "vol_sug",
+        pace_sug = "pace_sug",
+        flue_sug = "flue_sug",
+        memo_sug = "memo_sug",
+        flue_score = "flue_sug",
+        memo_score = "memo_sug",
+
     )
 
 @app.route('/recent/', methods=['GET'])
