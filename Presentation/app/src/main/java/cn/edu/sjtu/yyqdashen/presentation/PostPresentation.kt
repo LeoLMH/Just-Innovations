@@ -19,6 +19,7 @@ import cn.edu.sjtu.yyqdashen.presentation.PresentationStore.getAudioScore
 import cn.edu.sjtu.yyqdashen.presentation.databinding.ActivityPresentationPostBinding
 import cn.edu.sjtu.yyqdashen.presentation.PresentationStore.pre
 import cn.edu.sjtu.yyqdashen.presentation.databinding.FragmentSuggestionBinding
+import okhttp3.OkHttpClient
 
 class PostPresentation : AppCompatActivity() {
     private lateinit var view: ActivityPresentationPostBinding
@@ -27,7 +28,7 @@ class PostPresentation : AppCompatActivity() {
 
     // user inputs, will be sent to backend server
     private var title_text : String? = null
-    private var username_text : String? = null
+
     private var script_text : String? = null
     private var topic_text: String? = null
     //TODO:: 4 use a variable in pre to store the video and script uploaded by user
@@ -144,15 +145,13 @@ class PostPresentation : AppCompatActivity() {
     fun startLoad(view: View?) {
         // send all presentation input to backend server
         title_text = findViewById<EditText>(R.id.titleTextView).text.toString()
-        username_text = findViewById<EditText>(R.id.usernameTextView).text.toString()
         script_text = findViewById<EditText>(R.id.scriptTextView).text.toString()
         topic_text = findViewById<EditText>(R.id.topicTextView).text.toString()
 
         pre.pre_title = title_text
-        pre.user_name = username_text
         pre.script = script_text
         pre.topic = topic_text
-        Log.e("username",username_text.toString())
+
         startActivity(Intent(this, LoadActivity::class.java))
 
     }
