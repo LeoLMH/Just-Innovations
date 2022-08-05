@@ -80,17 +80,19 @@ def score():
     fmt = rec.filename.split(".")[-1]
     filename = './download/' + str(int(time.time())) + "." + fmt
     rec.save(filename)
-    source_file = filename
-    sink_file = './download/' + str(int(time.time())) + ".wav"
-    ff = ffmpy.FFmpeg(
-        inputs={source_file: None},
-        outputs={sink_file: None})
-    ff.run()
+    if fmt != "wav":
+        source_file = filename
+        sink_file = './download/' + str(int(time.time())) + ".wav"
+        ff = ffmpy.FFmpeg(
+            inputs={source_file: None},
+            outputs={sink_file: None})
+        ff.run()
+        filename = sink_file
 
     # load wav audio, get script, get topic, get speech as text
-    data = load_audio_file(sink_file, reset=False)
+    data = load_audio_file(filename, reset=False)
     script = request.form['script']
-    text_speech = audio_to_text(sink_file)
+    text_speech = audio_to_text(filename)
     topic = request.form['topic']
 
     print("@@@")
@@ -115,15 +117,20 @@ def score():
     pre_title = request.form['presentation_title']
     record_name = './'+user_name+'/'+pre_title+'.json'
     d = {}
-    d["overall_score"] = str(overall_score),
-    d["speech_score"] = str(speech_score),
-    d["volume_score"] = str(volume_score),
-    d["pace_score"] = str(pace_score),
-    d["visual_score"] = str(visual_score),
-    d["gesture_score"] = str(gesture_score),
-    d["facial_score"] = str(facial_score),
-    d["suggestion"] = str(suggestion),
-    with open(record_name, 'w') as f:
+    d["overall_score"] = str(overall_score)
+    d["speech_score"] = str(speech_score)
+    d["volume_score"] = str(volume_score)
+    d["pace_score"] = str(pace_score)
+    d["visual_score"] = str(visual_score)
+    d["gesture_score"] = str(gesture_score)
+    d["facial_score"] = str(facial_score)
+    d["suggestion"] = str(suggestion)
+
+    cur_path = os.path.dirname(os.path.realpath(__file__))
+    save_path = os.path.join(cur_path, record_name)
+    if not os.path.exists(os.path.dirname(save_path)):
+        os.mkdir(os.path.dirname(save_path))
+    with open(save_path, 'w') as f:
         json.dump(d,f)
     return jsonify(
         average_volume=str(average_volume),
