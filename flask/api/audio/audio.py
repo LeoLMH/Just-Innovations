@@ -52,7 +52,7 @@ def get_volume(data, tic=0, toc=None):
     y, sr = data["waveform"]
     xmax = sr * toc if toc else sr * (tic + 1)
     avg_energy = np.mean(data["energy"][sr * tic : xmax])
-    return avg_energy
+    return 100 - abs(int((avg_energy - 0.05) * 100))
 
 
 def get_wordspersecond(data, tic=0, toc=None):
@@ -65,7 +65,7 @@ def get_wordspersecond(data, tic=0, toc=None):
     words = filter(lambda x: x >= sr * tic and x < xmax, data["onsets"])
     words_count = len(list(words))
     words_per_sec = words_count / (xmax / (sr + 0.0) - tic)
-    return words_per_sec
+    return 100 - abs(int((words_per_sec - 5) * 10)) 
 
 
 def volume_handler(filepath, reset=False):
