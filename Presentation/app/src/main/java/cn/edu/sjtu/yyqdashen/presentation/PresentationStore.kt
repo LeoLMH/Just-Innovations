@@ -54,12 +54,20 @@ object PresentationStore {
         Log.e("video_uri",pre.video_uri.toString())
         pre.video_uri?.toFile(context)
             ?.let { mpFD.addFormDataPart("recording","presentation", it.asRequestBody("video/mp4".toMediaType())) }
+
+        pre.topic?.let { mpFD.addFormDataPart("topic", it) }
+        pre.user_name?.let { mpFD.addFormDataPart("user_name", it) }
+        pre.pre_title?.let { mpFD.addFormDataPart("presentation_title", it) }
+        pre.script?.let { mpFD.addFormDataPart("script", it) }
+
+
         Log.e("video_uri",pre.video_uri.toString())
         val request = Request.Builder()
             //.method("POST",mpFD.build())
             .url(serverUrl+"score/")
             .post(mpFD.build())
             .build()
+
         Log.e("video_uri",pre.video_uri.toString())
 
         // hardcode test for UI
@@ -91,7 +99,15 @@ object PresentationStore {
                     val pace_scoreReceived = try { json.getString("pace_score")} catch (e: JSONException) { "error" }
                     val gesture_scoreReceived = try { json.getString("gesture_score")} catch (e: JSONException) { "error" }
                     val overall_scoreReceived = try { json.getString("overall_score")} catch (e: JSONException) { "error" }
-                    val suggestion = try { json.getString("suggestion")} catch (e: JSONException) { "error" }
+                    val gesture_sug = try { json.getString("gesture_sug")} catch (e: JSONException) { "error" }
+                    val face_sug = try { json.getString("face_sug")} catch (e: JSONException) { "error" }
+                    val vol_sug = try { json.getString("vol_sug")} catch (e: JSONException) { "error" }
+                    val pace_sug = try { json.getString("pace_sug")} catch (e: JSONException) { "error" }
+                    val flue_sug = try { json.getString("flue_sug")} catch (e: JSONException) { "error" }
+                    val memo_sug = try { json.getString("memo_sug")} catch (e: JSONException) { "error" }
+                    val overall_suggestion = try { json.getString("suggestion")} catch (e: JSONException) { "error" }
+                    val flue_scoreReceived = try { json.getString("flue_score")} catch (e: JSONException) { "error" }
+                    val memo_scoreReceived = try { json.getString("memo_score")} catch (e: JSONException) { "error" }
 
                     pre.facial_score=facial_scoreReceived
                     pre.visual_score=visual_scoreReceived
@@ -99,28 +115,18 @@ object PresentationStore {
                     pre.pace_score=pace_scoreReceived
                     pre.gesture_score=gesture_scoreReceived
                     pre.volume_score = volume_scoreReceived
-                    pre.suggestion=suggestion
+                    pre.suggestion=overall_suggestion
                     pre.overall_score=overall_scoreReceived
+                    pre.gesture_suggestion = gesture_sug
+                    pre.face_suggestion = face_sug
+                    pre.volume_suggestion = vol_sug
+                    pre.pace_suggestion = pace_sug
+                    pre.flue_suggestion = flue_sug
+                    pre.memo_suggestion = memo_sug
+                    pre.flue_score = flue_scoreReceived
+                    pre.memo_score = memo_scoreReceived
                     Log.e("volume score is",pre.volume_score!!)
                     stat = "done"
-                    val request2 = Request.Builder()
-                        //.method("POST",mpFD.build())
-                        .url(serverUrl+"image/")
-                        .post(mpFD.build())
-                        .build()
-                    client.newCall(request2).enqueue(object : Callback{
-                        override fun onFailure(call: Call, e: IOException) {
-                            Log.e("getscore", "Failed second request")
-                        }
-
-                        override fun onResponse(call: Call, response: Response) {
-                            Log.e("getscore", "Second request succeed")
-                            val result = response.body?.string() ?: ""
-                            var decode_result = Base64.decode(result,Base64.NO_WRAP)
-
-                            pre.image = BitmapFactory.decodeResource(resources, R.drawable.image)
-                        }
-                    })
                 }
             }
         })

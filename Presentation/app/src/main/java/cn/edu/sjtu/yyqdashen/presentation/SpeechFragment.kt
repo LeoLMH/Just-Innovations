@@ -32,7 +32,12 @@ class SpeechFragment() : Fragment() {
     private var paceScoreView: TextView? = null
     private var paceImageView: ImageView? = null
     private var speechScoreView: TextView? = null
-
+    private  var memoScoreView: TextView? = null
+    private  var flueScoreView: TextView? = null
+    private  var memoDesView: TextView? = null
+    private  var flueDesView: TextView? = null
+    private  var paceDesView: TextView? = null
+    private  var volumeDesView: TextView? = null
     private var adapter: ExpandableListAdapter? = null
     private var titleList: List<String>? = null
 
@@ -54,15 +59,30 @@ class SpeechFragment() : Fragment() {
         volumeScoreView=binding.volumeScore
         volumeImageView=binding.volumeImage
         speechScoreView=binding.speechScore
+        memoScoreView=binding.contentScore
+        memoDesView=binding.contentDesp
+        flueScoreView=binding.flueScore
+        flueDesView=binding.flueDesp
+        paceDesView=binding.paceDesp
+        volumeDesView=binding.volumnDesp
         paceScoreView=binding.paceScore
         paceImageView=binding.paceImage
+
         volumeScoreView!!.text = pre.volume_score
         speechScoreView!!.text=pre.speech_score
         paceScoreView!!.text=pre.pace_score
+        memoScoreView!!.text=pre.memo_score
+        memoDesView!!.text=pre.memo_suggestion
+        paceDesView!!.text=pre.pace_suggestion
+        flueScoreView!!.text=pre.flue_score
+        flueDesView!!.text=pre.flue_suggestion
+        volumeDesView!!.text=pre.volume_suggestion
 
         // Change the image from backend here!!!
-        volumeImageView!!.setImageResource(R.drawable.sample_chart)
-        paceImageView!!.setImageResource(R.drawable.sample_chart)
+        volumeImageView!!.setImageResource(R.drawable.volume_figure)
+        paceImageView!!.setImageResource(R.drawable.pace_figure)
+
+
 
     }
 
