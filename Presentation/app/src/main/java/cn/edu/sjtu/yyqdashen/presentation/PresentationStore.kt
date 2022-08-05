@@ -59,8 +59,8 @@ object PresentationStore {
         val mpFD = MultipartBody.Builder().setType(MultipartBody.FORM)
             .addFormDataPart("script", "this is a test script")
         Log.e("video_uri",pre.video_uri.toString())
-        //pre.video_uri?.toFile(context)
-        //    ?.let { mpFD.addFormDataPart("recording","presentation", it.asRequestBody("video/mp4".toMediaType())) }
+        pre.video_uri?.toFile(context)
+            ?.let { mpFD.addFormDataPart("recording","presentation", it.asRequestBody("video/mp4".toMediaType())) }
 
         pre.topic?.let { mpFD.addFormDataPart("topic", it) }
         pre.user_name?.let { mpFD.addFormDataPart("user_name", it) }
