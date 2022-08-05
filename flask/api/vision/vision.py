@@ -1,3 +1,4 @@
+from unicodedata import decimal
 import torch
 import cv2
 import numpy as np
@@ -48,7 +49,9 @@ def get_facial_gesture_score(path):
             for emotion in emotion_catogory:
                 emotion_score[emotion]=emotion_score[emotion]+result[0]['emotions'][emotion]
             valid_frame=valid_frame+1
-        hand_result = hands.process(frame)
+        imgRGB = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        hand_result = hands.process(imgRGB)
+        
         if hand_result.multi_hand_landmarks:
             for handLms in hand_result.multi_hand_landmarks:
                 for id, lm in enumerate(handLms.landmark):
@@ -69,4 +72,6 @@ def get_facial_gesture_score(path):
         hand_score=90
     else:
         hand_score=100
-    return (hand_score+facial_score)/20,hand_score/10,facial_score/10
+
+    facial_score=round(facial_score,3)
+    return round((hand_score+facial_score)/2,3),round(hand_score,3),round(facial_score,3)

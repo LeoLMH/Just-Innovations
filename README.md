@@ -126,7 +126,7 @@ This section is left blank for now.
 
 ## Team Roster
 
-The contribution division will be added later.
+The contribution division is detailed in the table below.
 
 | Name         | Contribution                                                 |
 | ------------ | ------------------------------------------------------------ |
@@ -137,3 +137,6 @@ The contribution division will be added later.
 | Yangqin Yan  | Design frontend layout and implement frontend activities.    |
 | Jiaming Kang |                                                              |
 
+### Challenges in APP Development 
+
+Throughout the APP development, we met numerous challenges. Yet, all of our challenges can be summarized into "a difficulty in time estimation and project planning". In the frontend part, our unfamiliarity with `kotlin` syntax resulted in time debugging codes involving the okhttp and other 3rd party APIs. We had ZOOM meetings to pool our efforts in debugging, which greatly accelerated the debugging process. In the backend development part, our greatest obstacle was the insufficient computing power provided by the aws EC2 server. Since our project involves machine learning models, the memory on the server soon proved to be not enough. Therefore, we had to develop concurrently on our local laptops and on the cloud, configuring every environment twice to figure out whether any bug was due to memory deficiency or syntatic errors. This helped us learn the importance of documenting our environment configuration. While developing the features, we spent more time than expected reearching existing APIs and open source libraries. Whenever we choose to use an opensource library with state-of-the-art performance, it would involve environment configuration. And if using an API, we need to spend time reading the documentation. Comparing APIs and open source libraries therefore became time-consuming. In retrospect, if we had assigned one member to test each API or library concurrently, we would have saved time. Another lesson learned. While developing ML features, such as hand-gesture and facial expression recognition, we spent much time again preparing environments and running experiments. However, this time seems unavoidable. If anything, we could have done this part as early as possible. In summary, due to our lack of experience in team-coding, we wasted some time in almost every stage of our development. However, after each development process, we learned something that can help us acomplish these tasks faster in the future. We even had the chane of puttong some skills to practise this time. 

@@ -25,7 +25,8 @@ class MainActivity : AppCompatActivity() {
 
     private val client = OkHttpClient()
     private val _pre = Presentation()
-    private val serverUrl = "http://3.143.112.154:8000/"
+    //private val serverUrl = "http://3.143.112.154:8000/"
+    private val serverUrl = "http://10.0.2.2:5000/"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         view = ActivityMainBinding.inflate(layoutInflater)
@@ -35,12 +36,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun startPost(view: View?)  {
-        username_text = findViewById<EditText>(R.id.topicTextView).text.toString()
+        username_text = findViewById<EditText>(R.id.usernameTextView).text.toString()
         pre.user_name = username_text
         startActivity(Intent(this, PostPresentation::class.java))
     }
     fun recentPre(view: View?)  {
-        username_text = findViewById<EditText>(R.id.topicTextView).text.toString()
+        username_text = findViewById<EditText>(R.id.usernameTextView).text.toString()
         pre.user_name = username_text
         val mpFD = MultipartBody.Builder().setType(MultipartBody.FORM)
         pre.user_name?.let { mpFD.addFormDataPart("username", it) }
@@ -50,6 +51,7 @@ class MainActivity : AppCompatActivity() {
             .post(mpFD.build())
             .build()
         var stat = "empty"
+        Log.e("error","start sending request")
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 Log.e("recent", "Failed request")
@@ -69,7 +71,15 @@ class MainActivity : AppCompatActivity() {
                     val pace_scoreReceived = try { json.getString("pace_score")} catch (e: JSONException) { "error" }
                     val gesture_scoreReceived = try { json.getString("gesture_score")} catch (e: JSONException) { "error" }
                     val overall_scoreReceived = try { json.getString("overall_score")} catch (e: JSONException) { "error" }
-                    val suggestion = try { json.getString("suggestion")} catch (e: JSONException) { "error" }
+                    val gesture_sug = try { json.getString("gesture_sug")} catch (e: JSONException) { "error" }
+                    val face_sug = try { json.getString("face_sug")} catch (e: JSONException) { "error" }
+                    val vol_sug = try { json.getString("vol_sug")} catch (e: JSONException) { "error" }
+                    val pace_sug = try { json.getString("pace_sug")} catch (e: JSONException) { "error" }
+                    val flue_sug = try { json.getString("flue_sug")} catch (e: JSONException) { "error" }
+                    val memo_sug = try { json.getString("memo_sug")} catch (e: JSONException) { "error" }
+                    val overall_suggestion = try { json.getString("suggestion")} catch (e: JSONException) { "error" }
+                    val flue_scoreReceived = try { json.getString("flue_score")} catch (e: JSONException) { "error" }
+                    val memo_scoreReceived = try { json.getString("memo_score")} catch (e: JSONException) { "error" }
 
                     pre.facial_score=facial_scoreReceived
                     pre.visual_score=visual_scoreReceived
@@ -77,8 +87,16 @@ class MainActivity : AppCompatActivity() {
                     pre.pace_score=pace_scoreReceived
                     pre.gesture_score=gesture_scoreReceived
                     pre.volume_score = volume_scoreReceived
-                    pre.suggestion=suggestion
+                    pre.suggestion=overall_suggestion
                     pre.overall_score=overall_scoreReceived
+                    pre.gesture_suggestion = gesture_sug
+                    pre.face_suggestion = face_sug
+                    pre.volume_suggestion = vol_sug
+                    pre.pace_suggestion = pace_sug
+                    pre.flue_suggestion = flue_sug
+                    pre.memo_suggestion = memo_sug
+                    pre.flue_score = flue_scoreReceived
+                    pre.memo_score = memo_scoreReceived
                     stat="success"
                 }
             }
